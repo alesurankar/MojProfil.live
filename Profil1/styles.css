@@ -220,10 +220,10 @@ a {
 
 .home-img .img-box .img-item img {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 0px;
+    right: -50px;
     display: block;
-    width: 85%;
+    width: 120%;
     object-fit: cover;
     mix-blend-mode: lighten;
 }
