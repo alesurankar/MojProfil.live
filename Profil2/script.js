@@ -10,7 +10,7 @@ const icons = document.querySelectorAll('.toggle-icon i');
 const darkContainer = document.querySelector('#dark-container');
 const darkContainerImg = document.querySelector('#dark-container .home-img img');
 
-darkContainerImg.src = 'imgDark.png';
+darkContainerImg.src = '../imgDark.png';
 
 toggleIcons.forEach(toggle => {
     toggle.addEventListener('click', () => {
