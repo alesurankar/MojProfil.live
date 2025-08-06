@@ -16,35 +16,6 @@ body {
 a {
     text-decoration: none;
 }
-
-.navbar {
-    background-color: steelblue;
-    left: 0;
-    top: 0;
-    width: 100%;
-    font-size: 30px;
-    padding-top: 20px;
-    padding-left: 20px;
-    display: flex;
-    z-index: 100;
-}   
-
-.navbar ul {
-    display: flex;
-    padding-top: 20px;
-}
-
-.navbar ul li {
-    margin-left: 35px;
-    font-size: 20px;
-    font-weight: 600;
-    list-style: none;
-}
-
-.navbar ul li a {
-    width: 110px;
-}
-
 .content {
     font-size: 20px;
 }
@@ -65,7 +36,28 @@ a {
     background-color: aliceblue;
 }
 
+.content {
+    max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
 .points {
-    
-    padding: 25px 9%;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin-top: 10px;
+}
+.points li a {
+  text-decoration: none;
 }
