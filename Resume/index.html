@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a href="../index.html" class="btn">Back</a>
+    <div class="container">
+        <div class="header">
+            <div class="img-area">
+                <img src="../imgLight.png" alt="profile_photo">
+            </div>
+            <h1>Aleš Urankar</h1>
+            <h3>Softwere devoloper</h3>
+        </div>
+
+        <div class="main">
+            <div class="left">
+                <h2>Personal Informaiton</h2>
+                <p><strong>Name: </strong>Aleš Urankar</p>
+                <p><strong>Age: </strong>32</p>
+                <p><strong>Email: </strong>ale.urankar@gmail.com</p>
+                <p><strong>Phone: </strong>(+386)/(0)40-620-671</p>
+                <h2>Skills</h2>
+                <ul>
+                    <li>HTML, CSS, JavaScript</li>
+                    <li>Vue.js & Vuetify</li>
+                    <li>TypeScript (basic)</li>
+                    <li>C++ (Standard Library, Modern C++)</li>
+                    <li>OpenGL</li>
+                    <li>DirectX 11</li>
+                    <li>CEF</li>
+                    <li>Qt</li>
+                    <li>Python</li>
+                </ul>
+                <h2>Programing Experience</h2>
+                <h3>C++</h3>
+                <ul>
+                    <li>2 years of experience with Standard C++ (including modern features such as RAII, OOP, Templates, Move Semantics)</li>
+                    <li>1 year working with Win32 API, OpenGL, and DirectX 11 for game and graphics programming</li>
+                    <li>6 months of experience with Chromium Embedded Framework (CEF) and Qt for desktop applications</li>
+                    <h4>Libraries & Frameworks</h4>
+                    <ul>
+                        <li>Dear ImGui - GUI development</li>
+                        <li>Assimp - Asset import pipeline</li>
+                        <li>Boost.Asio - Asynchronous networking</li>
+                        <li>Boost.JSON - JSON serialization and parsing</li>
+                        <li>Boost.Beast - HTTP and WebSocket communication</li>
+                    </ul>
+                </ul>
+
+                <h3>Frontend Web Development</h3>
+                <ul>
+                    <li>1 year of experience building responsive web pages with HTML, CSS, and basic JavaScript</li>
+                    <li>Basic experience with TypeScript</li>
+                    <li>Familiarity with Vue.js and Vuetify component framework</li>
+                </ul>
+            </div>
+
+            <div class="right">
+                <h2>My Projects</h2>
+                <h3>NinjaStrike (2d RPG game in DirectX 11)</h3>
+                <p><strong>Started: </strong>November 2024 - Present</p>
+                <p><strong>Goal: </strong>To gain hands-on experience and deepen practical knowledge of C++</p>
+                <ul>
+                    <li>Implemented per-pixel clipping for rendering instead of relying on the standard graphics pipeline.</li>
+                    <li>Dynamically spawn and remove entities using <code>std::vector</code> and manage object lifetimes with <code>std::unique_ptr</code>.</li>
+                    <li>Developed a custom in-game menu system from scratch, without external libraries.</li>
+                    <li>Extensively utilized core C++ features and best practices, including Templates, Object-Oriented Programming, Inheritance, Move Semantics, RAII, and Multithreading with Concurrency.</li>
+                </ul>
+                <h3>Server/Client TCP connection with Boost(C++) and FastAPI(Python) for NinjaStrike Game</h3>
+                <p><strong>Started: </strong>March 2025 - Present</p>
+                <p><strong>Goal: </strong>To integrate C++ and Python by building a networked game architecture using Boost for the C++ client and FastAPI for the Python server.</p>
+                <ul>
+                    <li>Currently, the game supports basic player movement; shooting mechanics are yet to be implemented.</li>
+                    <li>FastAPI retrieves the username and previous position from the database and temporarily stores it in memory.</li>
+                    <li>The C++ client captures key inputs (e.g., "W", "A") and sends corresponding messages (e.g., "WA") asynchronously to the server using a dedicated networking thread, while a separate thread handles real-time rendering.</li>
+                    <li>On the server side, the main thread asynchronously listens for incoming messages, while another thread performs game state calculations.</li>
+                    <li>The server periodically (every 10 seconds) updates the player's position in the database via FastAPI.</li>
+                    <li>FastAPI also integrates with Flask Web and Tkinter-based application to handle user registration and login functionality.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
