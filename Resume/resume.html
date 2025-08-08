@@ -78,7 +78,7 @@
                 <p><strong>Goal: </strong>To integrate C++ and Python by building a networked game architecture using Boost for the C++ client and server, FastAPI for comunication between database and C++ server.</p>
                 <ul>
                     <li>Currently, the game supports basic player movement; shooting mechanics are yet to be implemented.</li>
-                    <li>FastAPI retrieves the username and previous position from the database and temporarily stores it in memory.</li>
+                    <li>FastAPI passes the username and previous position from the database to the server.</li>
                     <li>The C++ client captures key inputs (e.g., "W", "A") and sends corresponding messages (e.g., "WA") asynchronously to the server using a dedicated networking thread, while a separate thread handles real-time rendering.</li>
                     <li>On the server side, the main thread asynchronously listens for incoming messages, while another thread performs game state calculations.</li>
                     <li>The server periodically (every 10 seconds) updates the player's position in the database via FastAPI.</li>
