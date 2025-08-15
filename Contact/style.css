@@ -34,17 +34,39 @@ a {
 }
 
 .container {
-    background: #1f242d;
-    max-width: 800px;
+    background: #32363c;
+    max-width: 600px;
     margin: 60px auto;
     padding: 20px;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
 }
 
 .header {
     text-align: center;
+    box-shadow: 0 2px 20px rgba(255, 255, 255, 0.5);
+    min-height: 100px;
+    border-radius: 5px;
 }
 
 .header h1 {
-    margin-bottom: 10px;
+    margin-bottom: 25px;
+    padding-top: 30px;
+}
+
+.main {
+    text-align: center;
+    box-shadow: 0 2px 20px rgba(255, 255, 255, 0.5);
+    min-height: 200px;
+    padding: 40px;
+    border-radius: 5px;
+}
+
+.main h3 {
+    padding: 20px;
+}
+
+.main span {
+    text-decoration: underline;
+    color: rgb(150, 186, 218);
 }
