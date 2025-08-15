@@ -23,10 +23,10 @@ a {
 .btn {
     display: inline-block;
     padding: 10px 30px;
-    background: #7cf03d;
-    border: 2px solid #7cf03d;
+    background: #00b4c4;
+    border: 2px solid #00b4c4;
     border-radius: 40px;
-    box-shadow: 0 0 10px #7cf03d;
+    box-shadow: 0 0 10px #00b4c4;
     font-size: 16px;
     color: #1f242d;
     font-weight: 600;
