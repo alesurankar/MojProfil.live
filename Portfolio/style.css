@@ -2,12 +2,20 @@
     color: #052acc;
     font-weight: 600;
     font-size: 20px;
-    margin: 20px;
-    padding: 20px;
+    margin: 8px;
+    padding: 8px;
 }
 
 .body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+li {
+    padding-bottom: 8px;
+}
+
+.btn:hover {
+    color: blueviolet;
 }
