@@ -20,10 +20,12 @@ body {
 }
 
 .btn {
-    color: #1107cc;
     text-decoration: none;
+    color: #1107cc;
     font-weight: 600;
     font-size: 20px;
+    margin: 8px;
+    padding: 8px;
 }
 
 .container {
