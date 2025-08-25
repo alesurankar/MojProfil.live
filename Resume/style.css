@@ -15,25 +15,6 @@ a {
     padding: 0;
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 30px;
-    background: #7cf03d;
-    border: 2px solid #7cf03d;
-    border-radius: 40px;
-    box-shadow: 0 0 10px #7cf03d;
-    font-size: 16px;
-    color: #1f242d;
-    font-weight: 600;
-    transition: .5s;
-}
-
-.btn:hover {
-    background: transparent;
-    color: #7cf03d;
-    box-shadow: none;
-}
-
 .container {
     background: #f5f5f5;
     max-width: 800px;
