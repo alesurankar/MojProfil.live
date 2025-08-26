@@ -1,19 +1,27 @@
 .portfolio {
-    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     color: #fff;
-    background: linear-gradient(to right, #101726, #202228);
+    background: linear-gradient(to top, #101726, #202228);
+    height: 100vh;
     visibility: hidden;
     opacity: 0;
     animation: show-content 0.2s linear forwards;
     animation-delay: 0.2s;
 }
 
-@keyframes show-portfolio {
+@keyframes show-about {
     100% {
         visibility: visible;
         opacity: 1;
     }
+}
+
+.portfolio ul li {
+    list-style: none;
 }
 
 .portfolio ul li a {

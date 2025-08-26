@@ -1,8 +1,12 @@
 .about {
-    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     color: #fff;
-    background: linear-gradient(to right, #101726, #202228);
+    background: linear-gradient(to top, #101726, #202228);
+    height: 100vh;
     visibility: hidden;
     opacity: 0;
     animation: show-content 0.2s linear forwards;
@@ -18,27 +22,11 @@
 
 .about ul {
   display: flex;
+  justify-content: center;
   margin-top: 20px;
 }
 
-/* .about {
-    background-color: #1f242d;
-    color: white;
-    text-decoration: none;
-}
-
-.about ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  padding: 0;
-  margin-top: 10px;
-}
-
-.content {
-  font-size: 20px;
+.about ul li {
   max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 20px;
-} */
+  list-style: none;
+}
