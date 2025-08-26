@@ -18,6 +18,10 @@ a {
     transition: opacity 0.3s ease-in-out;
     opacity: 1;
 }
+body {
+    background-color: #1f242d;
+    color: #fff; /* optional, so text stays visible */
+}
 
 .navbar {
     position: fixed;
@@ -88,11 +92,11 @@ a {
     box-shadow: none;
 }
 
-.home-info .btn-sci .sci {
+.btn-sci .sci {
     margin-left: 20px;
 }
 
-.home-info .btn-sci .sci a {
+.btn-sci .sci a {
     display: inline-flex;
     padding: 8px;
     border: 2px solid #7cf03d;
@@ -103,7 +107,7 @@ a {
     transition: .5s;
 }
 
-.home-info .btn-sci .sci a:hover {
+.btn-sci .sci a:hover {
     background: #7cf03d;
     color: #1f242d;
     box-shadow: 0 0 10px #7cf03d;
