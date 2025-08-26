@@ -13,6 +13,12 @@ a {
     text-decoration: none;
 }
 
+#content {
+    background-color: #1f242d; /* dark color during transitions */
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
+
 .navbar {
     position: fixed;
     left: 0;
