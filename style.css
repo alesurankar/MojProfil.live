@@ -29,17 +29,18 @@ a {
     animation-delay: 0.6s;
 }
 
-@keyframes show-content {
+@keyframes show-navbar {
     100% {
         visibility: visible;
         opacity: 1;
     }
 }
 
-.logo {
-  margin-top: 60px;
-  font-size: 30px;
-  font-weight: 700;
+@keyframes show-content {
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
 }
 
 .navbar ul {
@@ -61,77 +62,6 @@ a {
 .navbar ul li.active a {
     color: #7cf03d;
 } 
-
-.home {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    height: 100vh;
-    padding: 60px 9% 0;
-    color: #fff;
-    visibility: hidden;
-    opacity: 0;
-    animation: show-content 0.2s linear forwards;
-    animation-delay: 0.2s;
-}
-
-.home-info h1 {
-    font-size: 55px;
-}
-
-.home-info h2 {
-    display: inline-block;
-    font-size: 32px;
-    margin-top: -10px;
-}
-
-.home-info h2 span {
-    position: relative;
-    display: inline-block;
-    color: transparent;
-    -webkit-text-stroke: .7px #7cf03d;
-    animation: display-text 16s linear infinite;
-    animation-delay: calc(-4s * var(--i));
-}
-
-@keyframes display-text {
-    20%,100% {
-        display: none;
-    }
-}
-
-.home-info h2 span::before {
-    content: attr(data-text);
-    position: absolute;
-    width: 0;
-    border-right: 2px solid #7cf03d;
-    color: #7cf03d;
-    white-space: nowrap;
-    overflow: hidden;
-    animation: fill-text 4s linear infinite;
-}
-
-@keyframes fill-text {
-    10%,
-    100% {
-        width: 0;
-    }
-
-    70%,
-    90% {
-        width: 100%;
-    }
-}
-
-.home-info p {
-    font-size: 16px;
-    margin: 10px 0 25px;
-}
-
-.home-info .btn-sci {
-    display: flex;
-    align-items: center;
-}
 
 .btn {
     display: inline-block;
@@ -242,7 +172,7 @@ a {
     height: 100%;
     background: #1f242d;
     transform: translateY(-100%);
-    animation: show-bars .5s ease-in-out forwards;
+    animation: show-bars .2s ease-in-out forwards;
     animation-delay: calc(.1s * var(--i));
 }
 
