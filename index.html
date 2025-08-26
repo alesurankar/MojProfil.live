@@ -6,18 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyPage</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="Home/home.css">
+    <link rel="stylesheet" type="text/css" href="About/about.css">
+    <link rel="stylesheet" type="text/css" href="Skills/skills.css">
+    <link rel="stylesheet" type="text/css" href="Portfolio/portfolio.css">
+    <link rel="stylesheet" type="text/css" href="Contact/contact.css">
 </head>
 <body>
     
     <nav class="navbar">
-        <a href="#" class="logo">Portfolio.</a>
         <ul>
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="About/about.html">About</a></li>
-            <li><a href="Skills/skills.html">Skills</a></li>
-            <li><a href="Portfolio/portfolio.html">Portfolio</a></li>
-            <li><a href="Contact/contact.html">Contact</a></li>
+            <li class="active"><a href="Home/home.html" onclick="loadPage(event, 'Home/home.html')">Home</a></li>
+            <li><a href="About/about.html" onclick="loadPage(event, 'About/about.html')">About</a></li>
+            <li><a href="Skills/skills.html" onclick="loadPage(event, 'Skills/skills.html')">Skills</a></li>
+            <li><a href="Portfolio/portfolio.html" onclick="loadPage(event, 'Portfolio/portfolio.html')">Portfolio</a></li>
+            <li><a href="Contact/contact.html" onclick="loadPage(event, 'Contact/contact.html')">Contact</a></li>
         </ul>
     </nav>
 
@@ -30,37 +35,17 @@
         <div class="bar" style="--i:1;"></div>
     </div>
 
-    <section class="home">
-        <div class="home-info">
-            <h1>Aleš Urankar</h1>
-            <h2>I am a 
-                <span style="--i:4;" data-text="HTML CSS Developer">HTML CSS Developer</span>
-                <span style="--i:3;" data-text="Graphics Programer">Graphics Programer</span>
-                <span style="--i:2;" data-text="C++ Devoloper">C++ Devoloper</span>
-                <span style="--i:1;" data-text="App Builder">App Builder</span>
-            </h2>
-            <p>I'm passionate about software development, with a strong focus on C++</p>
-            <div class="btn-sci">
-                
-                <a href="Resume/resume.html" class="btn" target="_blank" rel="noopener noreferrer">Resume</a>
-                <div class="sci">
-                    <a href="https://github.com/alesurankar" target="_blank" rel="noopener noreferrer"><i class='bx bxl-github'></i></a>
-                    <a href="https://www.linkedin.com/in/ale%C5%A1-urankar-a255721ba/" target="_blank" rel="noopener noreferrer"><i class='bx bxl-linkedin'></i></a>
-                    <a href="https://www.facebook.com/ales.urankar/" target="_blank" rel="noopener noreferrer"><i class='bx bxl-facebook'></i></a>
-                    <a href="https://www.youtube.com/@aleurankar" target="_blank" rel="noopener noreferrer"><i class='bx bxl-youtube'></i></a>
-                </div>
-            </div>
+    <main id="content"></main>
+    <div class="btn-sci">
+        <a href="Resume/resume.html" class="btn" target="_blank" rel="noopener noreferrer">Resume</a>
+        <div class="sci">
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer"><i class='bx bxl-github'></i></a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"><i class='bx bxl-linkedin'></i></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i class='bx bxl-facebook'></i></a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><i class='bx bxl-youtube'></i></a>
         </div>
-
-        <div class="home-img">
-            <div class="img-box">
-                <div class="img-item">
-                    <img src="myFace.jpg" alt="profile-picture">
-                </div>
-            </div>
-        </div>
-    </section>
-
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
