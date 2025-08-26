@@ -1,0 +1,17 @@
+.skills {
+    padding-top: 60px;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(to right, #101726, #202228);
+    visibility: hidden;
+    opacity: 0;
+    animation: show-content 0.2s linear forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes show-skills {
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+}

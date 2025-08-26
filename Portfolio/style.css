@@ -1,33 +1,21 @@
-* {
-    margin: 0;
-    padding: 0;
-    color: #d8d8d8;
-    font-family: sans-serif;
+.portfolio {
+    padding-top: 60px;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(to right, #101726, #202228);
+    visibility: hidden;
+    opacity: 0;
+    animation: show-content 0.2s linear forwards;
+    animation-delay: 0.2s;
 }
 
-.btn {
-    color: #d8d8d8;
-    font-weight: 600;
-    font-size: 20px;
-    margin: 8px;
-    padding: 8px;
+@keyframes show-portfolio {
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
 }
 
-.body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-body {
-    background: linear-gradient(to right, #052acc, #445fd8);
-}
-
-.body ul li {
+.portfolio ul li a {
     padding-bottom: 8px;
-}
-
-.btn:hover {
-    color: rgb(186, 138, 235);
 }

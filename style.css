@@ -25,8 +25,8 @@ a {
     z-index: 100;
     visibility: hidden;
     opacity: 0;
-    animation: show-content 1.5s linear forwards;
-    animation-delay: 1.2s;
+    animation: show-content 0.8s linear forwards;
+    animation-delay: 0.6s;
 }
 
 @keyframes show-content {
@@ -36,9 +36,10 @@ a {
     }
 }
 
-.navbar .logo {
-    font-size: 30px;
-    font-weight: 700;
+.logo {
+  margin-top: 60px;
+  font-size: 30px;
+  font-weight: 700;
 }
 
 .navbar ul {
@@ -70,8 +71,8 @@ a {
     color: #fff;
     visibility: hidden;
     opacity: 0;
-    animation: show-content 1.5s linear forwards;
-    animation-delay: 1.6s;
+    animation: show-content 0.2s linear forwards;
+    animation-delay: 0.2s;
 }
 
 .home-info h1 {
