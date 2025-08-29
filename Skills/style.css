@@ -19,3 +19,8 @@
         opacity: 1;
     }
 }
+
+.skills ul li {
+    text-decoration: none;
+    list-style: none;
+}
