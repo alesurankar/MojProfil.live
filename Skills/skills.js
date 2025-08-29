@@ -1,6 +1,6 @@
-document.querySelectorAll(".skill-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const details = btn.nextElementSibling; //<div class="skill-details">
-        details.classList.toggle("active");
-    });
+document.getElementById("content").addEventListener("click", (e) => {
+  if (e.target.classList.contains("skill-btn")) {
+    const details = e.target.nextElementSibling;
+    details.classList.toggle("active");
+  }
 });
