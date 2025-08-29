@@ -9,11 +9,11 @@
     height: 100vh;
     visibility: hidden;
     opacity: 0;
-    animation: show-content 0.2s linear forwards;
+    animation: show-skills 0.8s ease forwards;
     animation-delay: 0.2s;
 }
 
-@keyframes show-about {
+@keyframes show-skills {
     100% {
         visibility: visible;
         opacity: 1;
@@ -23,4 +23,25 @@
 .skills ul li {
     text-decoration: none;
     list-style: none;
+}
+
+.skill-details {
+    display: none; /*hidden by default*/
+    margin-top: 8px;
+    padding: 10px;
+}
+
+.skill-details.active {
+    display: block; /*show when toggled*/
+}
+
+.skill-btn {
+    background: none;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.skill-btn:hover {
+    color: rgb(133, 255, 127);
 }
