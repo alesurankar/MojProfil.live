@@ -1,35 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Resume</title>
-    </head>
-    <body>
-        <h2>1. Name & contact details</h2>
-        <h2>2. Work experience/projects </h2>
-        <h2>3. Education</h2>
-        <h2>4. Skills</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="img-area">
+                <img src="../myFace.jpg" alt="profile_photo">
+            </div>
+            <h1>Aleš Urankar</h1>
+            <h3>Softwere devoloper</h3>
+            <p>C++ Software Developer with 2+ years of experience in building apps.
+ Experience in multithreading, OOP, STL/Boost libraries, experience with crypto
+ and forex trading platforms. Strong background in exchange and electronic
+ trading platforms.
+ Experience on Windows and Linux environments.</p>
+        </div>
 
+        <div class="main">
+            <div class="left">
+                <h2>Personal Informaiton</h2>
+                <p><strong>Name: </strong>Aleš Urankar</p>
+                <p><strong>Age: </strong>32</p>
+                <p><strong>Email: </strong>ale.urankar@gmail.com</p>
+                <p><strong>Phone: </strong>(+386)/(0)40-620-671</p>
+                <p><strong>Website: </strong></p><a href="https://www.mojprofil.live/" target="_blank" rel="noopener noreferrer">https://www.mojprofil.live/</a>
+                <h2>Skills</h2>
+                <ul>
+                    <li>HTML, CSS, JavaScript</li>
+                    <li>Vue.js & Vuetify</li>
+                    <li>TypeScript (basic)</li>
+                    <li>C++ (Standard Library, Modern C++)</li>
+                    <li>OpenGL</li>
+                    <li>DirectX 11</li>
+                    <li>CEF</li>
+                    <li>Qt</li>
+                    <li>Python</li>
+                </ul>
+                <h2>Programing Experience</h2>
+                <h3>C++</h3>
+                <ul>
+                    <li>2 years of experience with Standard C++ (including modern features such as RAII, OOP, Templates, Move Semantics)</li>
+                    <li>1 year working with Win32 API, OpenGL, and DirectX 11 for game and graphics programming</li>
+                    <li>6 months of experience with Chromium Embedded Framework (CEF) and Qt for desktop applications</li>
+                    <h4>Libraries & Frameworks</h4>
+                    <ul>
+                        <li>Dear ImGui - GUI development</li>
+                        <li>Assimp - Asset import pipeline</li>
+                        <li>Boost.Asio - Asynchronous networking</li>
+                        <li>Boost.JSON - JSON serialization and parsing</li>
+                        <li>Boost.Beast - HTTP and WebSocket communication</li>
+                    </ul>
+                </ul>
 
-    [Full Name] | [City, Country] | [Email] |  [Phone] |  [LinkedIn/GitHub]
+                <h3>Frontend Web Development</h3>
+                <ul>
+                    <li>1 year of experience building responsive web pages with HTML, CSS, and basic JavaScript</li>
+                    <li>Basic experience with TypeScript</li>
+                    <li>Familiarity with Vue.js and Vuetify component framework</li>
+                </ul>
+                <h2>Open Source Contributions</h2>
+                <h3>facebookexperimental/Verax (Meta) – Contributor</h3>
+                <ul>
+                    <li>Refactored PlanType enum values in the optimizer for clarity and naming consistency, improving maintainability and code readability.</li>
+                    <li>Collaborated with Meta engineers via pull request review process; contribution merged into the main branch.</li>
+                    <a href="https://github.com/facebookexperimental/Verax/commit/e950bcc" target="_blank" rel="noopener noreferrer">Rename PlanType enum values for clarity (#160)</a>
+                    <li>Tech: C++20, CMake, GitHub</li>
+                </ul>
+            </div>
 
-    <h2>Summary</h2>
-    <p>C++ Software Developer with 2+ years of experience in building, experience in multithreaded programming, OOP, STL/Boost libraries, experience with crypto and forex trading platforms. Strong background in exchange and electronic trading platforms, with practical experience on Windows and Linux environments. Passionate about writing clean, efficient code and eager to expand knowledge in advanced C++ and modern software engineering practices.</p>
-
-    <h2>Technical Skills</h2>
-    <ul>
-        <li>Languages: C++ (C++11/14/17/20), SQL (basic), Python(Basic)</li>
-        <li>Libraries/Frameworks: STL, Boost.Asio/Beast/JSON, multithreading & concurrency tools</li>
-        <li>Concepts: OOP, design patterns, algorithms, data structures, memory management, debugging</li>
-        <li>Platforms: Windows, Linux</li>
-        <li>Domain Knowledge: Exchanges, electronic trading platforms, financial systems</li>
-        <li>Tools: Git, Visual Studio, CMake, g++</li>
-    </ul>
-
-
-    <h2>My portfolio</h2>
-    <P>C++ Developer</P>
-
-    </body>
+            <div class="right">
+                <h2>My Projects</h2>
+                <h3><a href="https://github.com/alesurankar/NinjaStrike" target="_blank" rel="noopener noreferrer">NinjaStrike (2d RPG game in DirectX 11)</a></h3>
+                <p><strong>Started: </strong>November 2024 - Present</p>
+                <p><strong>Goal: </strong>To gain hands-on experience and deepen practical knowledge of C++</p>
+                <ul>
+                    <li>Implemented per-pixel clipping for rendering instead of relying on the standard graphics pipeline.</li>
+                    <li>Dynamically spawn and remove entities using <code>std::vector</code> and manage object lifetimes with <code>std::unique_ptr</code>.</li>
+                    <li>Developed a custom in-game menu system from scratch, without external libraries.</li>
+                    <li>Extensively utilized core C++ features and best practices, including Templates, Object-Oriented Programming, Inheritance, Move Semantics, RAII, and Multithreading with Concurrency.</li>
+                </ul>
+                <h3><a href="https://github.com/alesurankar/Boost-Asio-server_side" target="_blank" rel="noopener noreferrer">Server TCP connection</a><br><a href="https://github.com/alesurankar/Boost-asio_client_framework" target="_blank" rel="noopener noreferrer">Client TCP connection</a><br>with Boost(C++) and<br><a href="https://github.com/alesurankar/fastAPI-web-gameLauncher_python" target="_blank" rel="noopener noreferrer">FastAPI(Python)</a> for server based game</h3>
+                <p><strong>Started: </strong>March 2025 - Present</p>
+                <p><strong>Goal: </strong>To integrate C++ and Python by building a networked game architecture using Boost for the C++ client and server, FastAPI for comunication between database and C++ server.</p>
+                <ul>
+                    <li>Currently, the game supports basic player movement; shooting mechanics are yet to be implemented.</li>
+                    <li>FastAPI passes the username and previous position from the database to the server.</li>
+                    <li>The C++ client captures key inputs (e.g., "W", "A") and sends corresponding messages (e.g., "WA") asynchronously to the server using a dedicated networking thread, while a separate thread handles real-time rendering.</li>
+                    <li>On the server side, the main thread asynchronously listens for incoming messages, while another thread performs game state calculations.</li>
+                    <li>The server periodically (every 10 seconds) updates the player's position in the database via FastAPI.</li>
+                    <li>FastAPI also integrates with Flask Web and Tkinter-based application to handle user registration and login functionality.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
