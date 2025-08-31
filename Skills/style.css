@@ -25,15 +25,39 @@
     list-style: none;
 }
 
-.skill-details {
-    display: none; /*hidden by default*/
+/* .skill-details {
+     
     margin-top: 8px;
     padding: 10px;
+    
+    border: 1px solid #2a469a;
+    border-radius: 6px;
+} */
+
+
+
+.skill-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    padding: 0 10px; /* start with no vertical padding */
     max-width: 600px;
 }
 
+.skill-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    border: 1px solid #2a469a;
+    border-radius: 6px;
+}
+
 .skill-details.active {
-    display: block; /*show when toggled*/
+    opacity: 1;
 }
 
 .skill-btn {
@@ -46,4 +70,12 @@
 
 .skill-btn:hover {
     color: rgb(133, 255, 127);
+}
+
+.FreeCodeCamp {
+    text-decoration: underline;
+}
+
+.FreeCodeCamp:hover {
+    color: gray;
 }
