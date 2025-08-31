@@ -29,6 +29,7 @@
     display: none; /*hidden by default*/
     margin-top: 8px;
     padding: 10px;
+    max-width: 600px;
 }
 
 .skill-details.active {
@@ -40,6 +41,7 @@
     color: #fff;
     border: none;
     cursor: pointer;
+    font-size: 18px;
 }
 
 .skill-btn:hover {
