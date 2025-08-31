@@ -1,9 +1,10 @@
 .home {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     background: linear-gradient(to top, #101726, #202228);
     gap: 50px;
-    padding: 60px 9% 0;
+    padding: 2px 9% 0;
     height: 100vh;
     visibility: hidden;
     opacity: 0;
