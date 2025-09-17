@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    padding-left: 40px;
     color: #fff;
     background: linear-gradient(to top, #101726, #202228);
     height: 100vh;
@@ -20,10 +20,19 @@
     }
 }
 
-.portfolio ul li {
-    list-style: none;
+.portfolio h1 {
+    text-align: left;         
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0 10px 0;
+    font-size: 1.4rem;
+    font-weight: 600;
 }
 
-.portfolio ul li a {
-    padding-bottom: 8px;
+.portfolio ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    width: 100%;
+    max-width: 600px;
 }
