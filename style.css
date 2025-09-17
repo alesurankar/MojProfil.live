@@ -14,13 +14,13 @@ a {
 }
 
 #content {
-    background-color: #1f242d; /* dark color during transitions */
+    background: transparent;
     transition: opacity 0.3s ease-in-out;
     opacity: 1;
 }
 
 body {
-    background-color: #1f242d;
+    background: linear-gradient(to top, #101726, #202228);
     color: #fff; /* optional, so text stays visible */
 }
 
@@ -31,6 +31,7 @@ body {
     top: 0;
     width: 100%;
     padding: 25px 9%;
+    background: transparent;
     justify-content: space-between;
     z-index: 100;
     visibility: hidden;
