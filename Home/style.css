@@ -134,3 +134,25 @@
     ;mix-blend-mode: normal;
     filter: drop-shadow(0 0 10px #7cf03d);
 }
+
+@media (max-width: 832px) {
+  .home {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    height: auto;
+  }
+
+  .home-info h1 {
+    font-size: 32px;
+  }
+
+  .home-info h2 {
+    font-size: 20px;
+  }
+
+  .home-img .img-box {
+    width: 60vw;
+    height: 60vw;
+  }
+}
