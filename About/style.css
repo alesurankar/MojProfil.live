@@ -29,3 +29,25 @@
   max-width: 800px;
   list-style: none;
 }
+
+@media (max-width: 832px) {
+  .about {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    height: auto;
+  }
+
+  .about h1 {
+    font-size: 32px;
+  }
+
+  .about ul {
+    font-size: 16px;
+  }
+
+  .about ul li {
+    width: 60vw;
+    height: 60vw;
+  }
+}
