@@ -26,23 +26,12 @@
     list-style: none;
 }
 
-/* .skill-details {
-     
-    margin-top: 8px;
-    padding: 10px;
-    
-    border: 1px solid #2a469a;
-    border-radius: 6px;
-} */
-
-
-
 .skill-details {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
     transition: max-height 0.4s ease, opacity 0.4s ease;
-    padding: 0 10px; /* start with no vertical padding */
+    padding: 0 10px;
     max-width: 600px;
 }
 

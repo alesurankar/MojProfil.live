@@ -21,7 +21,8 @@ a {
 
 body {
     background: linear-gradient(to top, #101726, #202228);
-    color: #fff; /* optional, so text stays visible */
+    background-attachment: fixed;
+    color: #fff;
 }
 
 .navbar {
