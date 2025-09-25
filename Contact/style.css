@@ -58,3 +58,31 @@
     text-decoration: underline;
     color: rgb(150, 186, 218);
 }
+
+@media (max-width: 640px) {
+  .contact {
+    height: auto;
+    padding: 20px;
+  }
+
+  .contact-box {
+    max-width: 95%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .contact .header h1 {
+    font-size: 1.5rem;
+    padding-top: 15px;
+  }
+
+  .contact .main {
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .contact .main h3 {
+    font-size: 1.1rem;
+    padding: 10px;
+  }
+}
