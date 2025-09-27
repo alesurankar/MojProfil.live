@@ -6,8 +6,8 @@
     align-items: center; 
     text-align: center;
     color: #fff;
-    min-height: 100vh;
-    height: 100vh;
+    min-height: 100vh;   /* fallback for older browsers */
+    min-height: 100dvh;  /* modern fix for mobile browsers */
     visibility: hidden;
     opacity: 0;
     animation: show-skills 0.8s ease forwards;

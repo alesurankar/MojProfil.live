@@ -4,7 +4,8 @@
     justify-content: flex-start;
     gap: 50px;
     padding: 2px 9% 0;
-    height: 100vh;
+    min-height: 100vh;   /* fallback for older browsers */
+    min-height: 100dvh;  /* modern fix for mobile browsers */
     visibility: hidden;
     opacity: 0;
     animation: show-home 0.8s ease forwards;
