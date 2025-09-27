@@ -21,6 +21,7 @@ a {
 }
 
 body {
+    min-height: 100%;
     background: linear-gradient(to top, #101726, #202228);
     background-attachment: fixed;
     color: #fff;
