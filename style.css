@@ -17,14 +17,24 @@ a {
     background: transparent;
     transition: opacity 0.3s ease-in-out;
     opacity: 1;
-    padding-bottom: 40px;
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
 }
 
 body {
     min-height: 100%;
-    background: linear-gradient(to top, #101726, #202228);
+    overflow-x: hidden; /* prevent sideways gaps */
     background-attachment: fixed;
     color: #fff;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #101726, #202228);
+  z-index: -1;
 }
 
 .navbar {
