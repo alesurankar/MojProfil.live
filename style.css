@@ -15,6 +15,7 @@ a {
 
 #content {
     background: transparent;
+    height: auto;
     transition: opacity 0.3s ease-in-out;
     opacity: 1;
     padding-bottom: calc(40px + env(safe-area-inset-bottom));
