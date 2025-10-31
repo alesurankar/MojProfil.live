@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="case">
+        <div class="buttons-top">
+            <button class="toggle-function">stopwatch</button>
+            <button class="toggle-action">12H</button>
+        </div>
+        <div class="display">
+            <div id="time">00:00:00</div>
+            <div id="date">1.1.2000</div>
+        </div>
+        <div class="buttons-bottom">
+            <label class="color-btn" for="case-color">
+                <input type="color" id="case-color" hidden>
+                <i class="fa-solid fa-suitcase"></i>
+            </label>
+            <label class="color-btn" for="display-color">
+                <input type="color" id="display-color" hidden>
+                <i class="fa-solid fa-tv"></i>
+            </label>
+            <label class="color-btn" for="digits-color">
+                <input type="color" id="digits-color" hidden>
+                <i class="fa-solid fa-3"></i>
+            </label>
+            <label class="color-btn" for="btn-color">
+                <input type="color" id="btn-color" hidden>
+                <i class="fa-solid fa-mobile-button"></i>
+            </label>
+            <label class="color-btn" for="text-color">
+                <input type="color" id="text-color" hidden>
+                <i class="fa-solid fa-font"></i>
+            </label>
+        </div>
+    </div>
+    <!-- Script -->
+     <script src="script.js"></script>
+</body>
+</html>

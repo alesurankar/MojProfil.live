@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.case {
+    position: relative;
+    border: 3px solid color-mix(in srgb, var(--btn-color) 50%, black);
+    padding: 20px;
+    margin: 10px auto;
+    margin-top: 100px;
+    height: 250px;
+    width: 500px;
+    border-radius: 10%;
+    background-color: var(--case-color);
+}
+
+.display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid color-mix(in srgb, var(--btn-color) 50%, black);
+    font-size: 60px;
+    text-align: center;
+    width: 80%;
+    border-radius: 5%;
+    background: var(--display-color);
+    color: var(--digits-color);
+}
+
+button {
+    color: var(--text-color);
+    min-width: 100px;
+    border-radius: 2px;
+    background-color: var(--btn-color);
+    border: 1px solid color-mix(in srgb, var(--btn-color) 50%, black);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: color-mix(in srgb, var(--btn-color) 90%, black);
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+.buttons-top {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.buttons-bottom {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.color-btn {
+    color: var(--text-color);
+    min-width: 40px;
+    background-color: var(--btn-color);
+    border: 1px solid color-mix(in srgb, var(--btn-color) 50%, black);
+    border-radius: 2px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.color-btn:hover {
+    background-color: color-mix(in srgb, var(--btn-color) 90%, black);
+}
+
+.color-btn:active {
+    transform: scale(0.96);
+}
+
+#date {
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+#time {
+    font-weight: 500;
+}
+
+:root {
+    --case-color : yellowgreen;
+    --display-color : #000000;
+    --digits-color : #ffffff;
+    --btn-color : white;
+    --text-color: black;
+}
