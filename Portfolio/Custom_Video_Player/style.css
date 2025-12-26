@@ -1,0 +1,266 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+    color: #ffffff;
+    font-family: "Roboto Mono", monospace;
+}
+
+body {
+    background-color: #2889e3;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-space {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container {
+    padding: 1em 0;
+}
+
+#my-video {
+    width: 100%;
+}
+
+.rotate-container {
+    top: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#rotate-icon {
+    display: flex;
+    flex-direction: column;
+    color: #dddddd;
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+.video-container {
+    width: 60%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    box-shadow: 20px 30px 50px rgba(0,0,0,0.2);
+}
+
+.controls {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(35,34,39,0.8);
+}
+
+.progress-container {
+    align-items: center;
+    padding: 0 0.5rem;
+}
+
+.video-controls {
+    flex-direction: row;
+    align-items: center;
+}
+
+#progress-bar {
+    position: relative;
+    width: 75%;
+    height: 5px;
+    background-color: #000000;
+    margin: 1em 0;
+    vertical-align: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.song-timer {
+    font-size: 0.8em;
+    width: 25%;
+    text-align: right;
+}
+
+#current-progress {
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    height: 5px;
+    width: 0;
+    background: #2887e3;
+    border-radius: 5px;
+}
+
+#current-progress:after {
+    content: "";
+    position: absolute;
+    left: calc(100% - 1.5px);
+    top: -2.5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ffffff;
+}
+
+.playback {
+    position: relative;
+}
+
+.control-btn,
+#screen-expand,
+#screen-compress {
+    width: 3em;
+    height: 3em;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+#size-screen {
+    margin-left: auto;
+}
+
+.volume {
+    align-items: center;
+    margin-left: 0.6em;
+}
+
+#volume-range {
+    position: relative;
+    margin: 0 0.5em;
+    cursor: pointer;
+    height: 5px;
+    -webkit-appearance: none;
+    background-color: #000000;
+    border-radius: 5px;
+    outline: none;
+}
+
+#low {
+    margin-left: 0.3em;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 10px;
+    width: 10px;
+    background-color: #2887e3;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.fa-solid {
+    font-size: 1.1rem;
+}
+
+.container-2 {
+    width: 10%;
+    min-width: 70px;
+    align-items: center;
+}
+
+#playback-speed-btn {
+    position: relative;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    padding: 0.3em 0.25em;
+    cursor: pointer;
+}
+
+.playback-options {
+    position: absolute;
+    bottom: 0;
+    background-color: #000000;
+    min-width: 5em;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.playback-options button {
+    color: #ffffff;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    width: 100%;
+    background-color: transparent;
+    padding: 1em;
+    text-decoration: none;
+    display: block;
+}
+
+@media all and (display-mode: fullscreen) {
+    .container {
+        padding: 0;
+    }
+    .video-container {
+        width: 100%;
+        margin: 0;
+    }
+    .controls {
+        position: absolute;
+        display: block;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+    }
+    #progress-bar {
+        width: 80%;
+    }
+    .song-timer {
+        width: 20%;
+        font-size: 1.2em;
+    }
+    .fa-solid {
+        color: #dddddd;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .video-container,
+    .controls {
+        width: 100%;
+    }
+    span {
+        display: inline;
+    }
+    #progress-bar {
+        width: 60%;
+    }
+    .song-timer {
+        width: 40%;
+        font-size: 0.9em;
+    }
+    .fa-solid {
+        font-size: 1rem;
+    }
+    .control-btn,
+    #screen-expand,
+    #screen-compress {
+        width: 2em;
+        height: 1.5em;
+    }
+}
+
+@media only screen and (max-width: 768px) and (display-mode:fullscreen) {
+    .video-container {
+        margin-top: 50%;
+    }
+}

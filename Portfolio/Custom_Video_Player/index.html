@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Video Player</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
+     <!-- Stylesheet -->
+      <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="rotate-container hide">
+            <div id="rotate-icon">
+                <i class="fa-solid fa-rotate-left"></i>
+                <p>Rotate for a better experience</p>
+            </div>
+        </div>
+        <div class="video-container" id="video-container">
+            <video id="my-video" preload="metadata">
+                <source src="my-video.mp4" type="video/mp4">
+                Your browser does not support the video tag
+            </video>
+            <div class="controls" id="controls">
+                <div class="progress-container flex-space">
+                    <div id="progress-bar">
+                        <div id="current-progress"></div>
+                    </div>
+                    <div class="song-timer">
+                        <span id="current-time">00:00</span>
+                        <span>/</span>
+                        <span id="max-duration">00:00</span>
+                    </div>
+                </div>
+                <div class="video-controls flex-space" id="video-controls">
+                    <div class="container-1 flex">
+                        <div>
+                            <!-- Play video -->
+                            <button id="play-btn" class="control-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                            <!-- Pause video -->
+                            <button id="pauseButton" class="control-btn hide">
+                                <i class="fa-solid fa-pause"></i>
+                            </button>
+                        </div>
+                        <!-- volume of video -->
+                        <div id="volume" class="volume flex">
+                            <span id="high">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </span>
+                            <span class="hide" id="low">
+                                <i class="fa-solid fa-volume-low"></i>
+                            </span>
+                            <span class="hide" id="mute">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                            </span>
+                            <input type="range" min="0" max="100" value="50" id="volume-range" oninput="slider()"/>
+                            <span id="volume-num">50</span>
+                        </div>
+                    </div>
+                    <div class="container-2 flex-space">
+                        <div class="playback">
+                            <button id="playback-speed-btn">1x</button>
+                            <div class="playback-options hide">
+                                <button onclick="setPlayback(0.5)">0.5</button>
+                                <button onclick="setPlayback(1.0)">1</button>
+                                <button onclick="setPlayback(2.0)">2</button>
+                            </div>
+                        </div>
+                        <!-- screen size -->
+                        <div id="size-screen">
+                            <button id="screen-expand">
+                                <i class="fa-solid fa-expand"></i>
+                            </button>
+                            <button id="screen-compress" class="hide">
+                                <i class="fa-solid fa-compress"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
