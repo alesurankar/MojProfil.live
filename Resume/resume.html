@@ -14,12 +14,12 @@
                 <img src="../myFace.jpg" alt="profile_photo">
             </div>
             <h1>Aleš Urankar</h1>
-            <h3>Softwere devoloper</h3>
+            <h3>Software Developer</h3>
         </div>
 
         <div class="main">
             <div class="left">
-                <h2>Personal Informaiton</h2>
+                <h2>Personal Information</h2>
                 <p><strong>Name: </strong>Aleš Urankar</p>
                 <p><strong>Age: </strong>32</p>
                 <p><strong>Email: </strong>ale.urankar@gmail.com</p>
@@ -37,60 +37,77 @@
                     <li>Qt</li>
                     <li>Python</li>
                 </ul>
-                <h2>Programing Experience</h2>
+                <h2>Programming Experience</h2>
                 <h3>C++</h3>
                 <ul>
-                    <li>2 years of experience with Standard C++ (including modern features such as RAII, OOP, Templates, Move Semantics)</li>
-                    <li>1 year working with Win32 API, OpenGL, and DirectX 11 for game and graphics programming</li>
-                    <li>6 months of experience with Chromium Embedded Framework (CEF) and Qt for desktop applications</li>
+                    <li>2 years of experience with Standard C++ (RAII, Templates, Move Semantics, OOP)</li>
+                    <li>1 year experience with Win32 API, OpenGL, DirectX 11</li>
+                    <li>6 months experience with CEF and Qt for desktop apps</li>
                     <h4>Libraries & Frameworks</h4>
                     <ul>
-                        <li>Dear ImGui - GUI development</li>
-                        <li>Assimp - Asset import pipeline</li>
-                        <li>Boost.Asio - Asynchronous networking</li>
-                        <li>Boost.JSON - JSON serialization and parsing</li>
-                        <li>Boost.Beast - HTTP and WebSocket communication</li>
+                        <li>Dear ImGui</li>
+                        <li>Assimp</li>
+                        <li>Boost.Asio</li>
+                        <li>Boost.JSON </li>
+                        <li>Boost.Beast</li>
                     </ul>
                 </ul>
 
                 <h3>Frontend Web Development</h3>
                 <ul>
-                    <li>1 year of experience building responsive web pages with HTML, CSS, and basic JavaScript</li>
-                    <li>Basic experience with TypeScript</li>
-                    <li>Familiarity with Vue.js and Vuetify component framework</li>
+                    <li>1 year building responsive web pages (HTML, CSS, JS)</li>
+                    <li>Basic TypeScript experience</li>
+                    <li>Familiar with Vue.js & Vuetify</li>
                 </ul>
                 <h2>Open Source Contributions</h2>
-                <h3>facebookexperimental/Verax (Meta) – Contributor</h3>
+                <h3>facebookexperimental/Verax (Meta) - Contributor</h3>
                 <ul>
-                    <li>Refactored PlanType enum values in the optimizer for clarity and naming consistency, improving maintainability and code readability.</li>
-                    <li>Collaborated with Meta engineers via pull request review process; contribution merged into the main branch.</li>
-                    <a href="https://github.com/facebookexperimental/Verax/commit/e950bcc" target="_blank" rel="noopener noreferrer">Rename PlanType enum values for clarity (#160)</a>
+                    <li>Refactored PlanType enum for clarity and maintainability</li>
+                    <li>Contribution merged into main branch via GitHub PR</li>
                     <li>Tech: C++20, CMake, GitHub</li>
+                    <a href="https://github.com/facebookexperimental/Verax/commit/e950bcc" target="_blank" rel="noopener noreferrer">Rename PlanType enum values for clarity (#160)</a>
                 </ul>
             </div>
 
             <div class="right">
                 <h2>My Projects</h2>
-                <h3><a href="https://github.com/alesurankar/NinjaStrike" target="_blank" rel="noopener noreferrer">NinjaStrike (2d RPG game in DirectX 11)</a></h3>
-                <p><strong>Started: </strong>November 2024 - Present</p>
-                <p><strong>Goal: </strong>To gain hands-on experience and deepen practical knowledge of C++</p>
-                <ul>
-                    <li>Implemented per-pixel clipping for rendering instead of relying on the standard graphics pipeline.</li>
-                    <li>Dynamically spawn and remove entities using <code>std::vector</code> and manage object lifetimes with <code>std::unique_ptr</code>.</li>
-                    <li>Developed a custom in-game menu system from scratch, without external libraries.</li>
-                    <li>Extensively utilized core C++ features and best practices, including Templates, Object-Oriented Programming, Inheritance, Move Semantics, RAII, and Multithreading with Concurrency.</li>
-                </ul>
-                <h3><a href="https://github.com/alesurankar/Boost-Asio-server_side" target="_blank" rel="noopener noreferrer">Server TCP connection</a><br><a href="https://github.com/alesurankar/Boost-asio_client_framework" target="_blank" rel="noopener noreferrer">Client TCP connection</a><br>with Boost(C++) and<br><a href="https://github.com/alesurankar/fastAPI-web-gameLauncher_python" target="_blank" rel="noopener noreferrer">FastAPI(Python)</a> for server based game</h3>
-                <p><strong>Started: </strong>March 2025 - Present</p>
-                <p><strong>Goal: </strong>To integrate C++ and Python by building a networked game architecture using Boost for the C++ client and server, FastAPI for comunication between database and C++ server.</p>
-                <ul>
-                    <li>Currently, the game supports basic player movement; shooting mechanics are yet to be implemented.</li>
-                    <li>FastAPI passes the username and previous position from the database to the server.</li>
-                    <li>The C++ client captures key inputs (e.g., "W", "A") and sends corresponding messages (e.g., "WA") asynchronously to the server using a dedicated networking thread, while a separate thread handles real-time rendering.</li>
-                    <li>On the server side, the main thread asynchronously listens for incoming messages, while another thread performs game state calculations.</li>
-                    <li>The server periodically (every 10 seconds) updates the player's position in the database via FastAPI.</li>
-                    <li>FastAPI also integrates with Flask Web and Tkinter-based application to handle user registration and login functionality.</li>
-                </ul>
+                <!-- Project 1 -->
+                <article class="project">
+                    <h3><a href="https://github.com/alesurankar/NinjaStrike" target="_blank" rel="noopener noreferrer">(2D RPG game in DirectX 11)</a></h3>
+                    <p><strong>Duration:</strong> November 2024 - Present</p>
+                    <p><strong>Goal:</strong> Gain hands-on experience and deepen practical knowledge of C++</p>
+                    <p><strong>Tech Stack:</strong> C++, DirectX 11, Win32 API</p>
+                    <ul>
+                        <li>Implemented per-pixel clipping for rendering, bypassing standard graphics pipeline.</li>
+                        <li>Managed entity lifetimes using <code>std::unique_ptr</code> and dynamic container management with <code>std::vector</code>.</li>
+                        <li>Built a custom in-game menu system from scratch.</li>
+                        <li>Utilized Templates, OOP, Inheritance, Move Semantics, RAII, and multithreading.</li>
+                    </ul>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project">
+                    <h3>
+                        <a href="https://github.com/alesurankar/Boost-Asio-server_side" target="_blank" rel="noopener noreferrer">
+                            Server TCP Connection
+                        </a> | 
+                        <a href="https://github.com/alesurankar/Boost-asio_client_framework" target="_blank" rel="noopener noreferrer">
+                            Client TCP Connection
+                        </a> | 
+                        <a href="https://github.com/alesurankar/fastAPI-web-gameLauncher_python" target="_blank" rel="noopener noreferrer">
+                            FastAPI Integration (Python)
+                        </a>
+                    </h3>
+                    <p><strong>Duration:</strong> March 2025 - Present</p>
+                    <p><strong>Goal:</strong> Integrate C++ and Python by building a networked game architecture with Boost and FastAPI</p>
+                    <p><strong>Tech Stack:</strong> C++ (Boost.Asio), Python (FastAPI, Flask, Tkinter), PostgreSQL</p>
+                    <ul>
+                        <li>Implemented asynchronous client-server communication for player movement.</li>
+                        <li>Database integration via FastAPI for user state and registration/login handling.</li>
+                        <li>C++ client handles input on a dedicated networking thread while a separate thread renders graphics.</li>
+                        <li>Server manages game state calculation asynchronously and updates database every 10 seconds.</li>
+                    </ul>
+                </article>
             </div>
         </div>
     </div>
