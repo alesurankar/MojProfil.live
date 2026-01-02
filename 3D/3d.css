@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+}
+
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  color: rgb(117, 197, 117);
+  padding: 2rem;
+}

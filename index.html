@@ -12,8 +12,18 @@
     <link rel="stylesheet" type="text/css" href="Skills/style.css">
     <link rel="stylesheet" type="text/css" href="Portfolio/style.css">
     <link rel="stylesheet" type="text/css" href="Contact/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="3D/3d.css">
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.161/build/three.module.js",
+        "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161/examples/jsm/"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
     <nav class="navbar">
         <ul>
             <li class="active"><a href="Home/home.html" onclick="loadPage(event, 'Home/home.html')">Home</a></li>
@@ -37,5 +47,6 @@
     
     <script src="Skills/skills.js"></script>
     <script src="script.js"></script>
-</body>
+    <script type="module" src="3D/3d.js"></script>
+  </body>
 </html>
