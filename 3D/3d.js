@@ -12,13 +12,34 @@ const near = 0.1;
 const far = 1000;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
+
+/////////////////////////////////////////////
+const canvas = document.createElement('canvas');
+canvas.width = 1;
+canvas.height = 256;
+const ctx = canvas.getContext('2d');
+
+const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+gradient.addColorStop(0, '#101726'); // top
+gradient.addColorStop(1, '#202228'); // bottom
+ctx.fillStyle = gradient;
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+const texture = new THREE.CanvasTexture(canvas);
+texture.magFilter = THREE.LinearFilter;
+texture.minFilter = THREE.LinearFilter;
+texture.encoding = THREE.sRGBEncoding;
+
+scene.background = texture;
+
+
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
 });
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(w, h);
-camera.position.setZ(30);
+renderer.outputEncoding = THREE.sRGBEncoding;
 
 
 ///////////////////////////////////////////////
@@ -73,8 +94,7 @@ function assStar() {
 Array(200).fill().forEach(assStar);
 
 
-
-
+/////////////////////////////////////
 let scrollZ = 0;
 let autoY = 0;
 
