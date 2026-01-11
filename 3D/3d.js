@@ -1,38 +1,19 @@
 import * as THREE from "three";
-import { OrbitControls } from "jsm/controls/OrbitControls.js";
+import { Asteroids } from "./objects/asteroids.js"
+import { Planet } from "./objects/planet.js"
+import { Star } from "./objects/star.js";
+import { GameControls } from "./utils/gameControls.js"
 
 
 ///////////////////////////////////////////////
 const scene = new THREE.Scene();
 const w = window.innerWidth;
 const h = window.innerHeight;
-const fov = 75;
+const fov = 40;
 const aspect = w / h;
 const near = 0.1;
-const far = 2000;
+const far = 20000;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-camera.position.set(0, 0, 400);
-
-
-/////////////////////////////////////////////
-const canvas = document.createElement('canvas');
-canvas.width = 1;
-canvas.height = 256;
-const ctx = canvas.getContext('2d');
-
-const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-gradient.addColorStop(0, '#101726'); // top
-gradient.addColorStop(1, '#202228'); // bottom
-ctx.fillStyle = gradient;
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-const texture = new THREE.CanvasTexture(canvas);
-texture.magFilter = THREE.LinearFilter;
-texture.minFilter = THREE.LinearFilter;
-texture.encoding = THREE.sRGBEncoding;
-
-scene.background = texture;
-
 
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
@@ -40,89 +21,394 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(w, h);
-renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.physicallyCorrectLights = true;
 
 
-/////////////////////////////////////////
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.dampingFactor = 0.03;
-controls.enableZoom = false;
+// Ambient light, for simulation purposes
+const ambientLight = new THREE.AmbientLight(
+  0x404040,
+  1.3
+);
+scene.add(ambientLight);
+
+const gameControls = new GameControls(camera, document.body, 0.5);
 
 
-
-///////////////////////////////////////////////
-// GPU-friendly stars using Points
-const starCount = 10000;
-const positions = new Float32Array(starCount * 3);
-const colors = new Float32Array(starCount * 3);
-const radius = 1200;
-const minDistance = 200;
-
-// generate positions inside spherical shell
-for (let i = 0; i < starCount; i++) {
-  const phi = Math.random() * 2 * Math.PI;
-  const costheta = Math.random() * 2 - 1;
-  const theta = Math.acos(costheta);
-  const r = minDistance + (radius - minDistance) * Math.cbrt(Math.random());
-
-  const x = r * Math.sin(theta) * Math.cos(phi);
-  const y = r * Math.sin(theta) * Math.sin(phi);
-  const z = r * Math.cos(theta);
-
-  positions[i * 3] = x;
-  positions[i * 3 + 1] = y;
-  positions[i * 3 + 2] = z;
-
-  const intensity = 0.8 + Math.random() * 0.2;
-  colors[i * 3] = 1.0 * intensity;      // r
-  colors[i * 3 + 1] = 1.0 * intensity;  // g
-  colors[i * 3 + 2] = 0.8 * intensity;  // b (slightly yellowish)
+const axialTimeScale = 100;
+function rotationSpeedFromDays(days, axialTimeScale) {
+    const seconds = days * 24 * 60 * 60;
+    return (2 * Math.PI / seconds) * axialTimeScale;
 }
 
-const starGeometry = new THREE.BufferGeometry();
-starGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-starGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+const orbitalTimeScale = 400;
+function orbitalSpeedFromDays(days, orbitalTimeScale) {
+    const seconds = days * 24 * 60 * 60;
+    return (2 * Math.PI / seconds) * orbitalTimeScale;
+}
 
-const starMaterial = new THREE.PointsMaterial({
-  size: 0.5,            // star size
-  vertexColors: true,    // use the color buffer
-  transparent: true,
-  blending: THREE.AdditiveBlending, // glow effect
+// Axial Speeds
+const mercuryAxialSpeed = rotationSpeedFromDays(58.6, axialTimeScale);
+const venusAxialSpeed   = -rotationSpeedFromDays(243, axialTimeScale);   // retrograde
+const earthAxialSpeed   = rotationSpeedFromDays(1, axialTimeScale);
+const moonAxialSpeed    = rotationSpeedFromDays(27.3, axialTimeScale);
+const marsAxialSpeed    = rotationSpeedFromDays(1.03, axialTimeScale);
+const jupiterAxialSpeed = rotationSpeedFromDays(0.41, axialTimeScale);
+const saturnAxialSpeed  = rotationSpeedFromDays(0.45, axialTimeScale);
+const uranusAxialSpeed  = -rotationSpeedFromDays(0.72, axialTimeScale);  // retrograde
+const neptuneAxialSpeed = rotationSpeedFromDays(0.67, axialTimeScale);
+const plutoAxialSpeed   = rotationSpeedFromDays(6.39, axialTimeScale);
+
+// Orbitral Speeds
+const mercuryOrbitalSpeed = orbitalSpeedFromDays(88, orbitalTimeScale);
+const venusOrbitalSpeed   = orbitalSpeedFromDays(224.7, orbitalTimeScale);
+const earthOrbitalSpeed   = orbitalSpeedFromDays(365.25, orbitalTimeScale);
+const moonOrbitalSpeed    = orbitalSpeedFromDays(27.3, orbitalTimeScale);
+const marsOrbitalSpeed    = orbitalSpeedFromDays(687, orbitalTimeScale);
+const asteroidBeltOrbitalSpeed    = orbitalSpeedFromDays(1570, orbitalTimeScale);
+const jupiterOrbitalSpeed = orbitalSpeedFromDays(4333, orbitalTimeScale);
+const saturnOrbitalSpeed  = orbitalSpeedFromDays(10759, orbitalTimeScale);
+const saturnRingOrbitalSpeed    = orbitalSpeedFromDays(0.6, orbitalTimeScale);
+const uranusOrbitalSpeed  = orbitalSpeedFromDays(30687, orbitalTimeScale);
+const uranusRingOrbitalSpeed    = -orbitalSpeedFromDays(0.26, orbitalTimeScale); //retrograde
+const neptuneOrbitalSpeed = orbitalSpeedFromDays(60190, orbitalTimeScale);
+const plutoOrbitalSpeed   = orbitalSpeedFromDays(90560, orbitalTimeScale);
+
+
+const loader = new THREE.CubeTextureLoader();
+
+const skybox = loader.load([
+  './3D/textures/skybox/n1.png',
+  './3D/textures/skybox/n2.png',
+  './3D/textures/skybox/n3.png',
+  './3D/textures/skybox/n4.png',
+  './3D/textures/skybox/n5.png',
+  './3D/textures/skybox/n6.png',
+]);
+
+scene.background = skybox;
+
+// Create Sun
+const sun = new Star({
+  name: "sun",
+  size: 100,
+  position: new THREE.Vector3(0, 0, 0),
+  temperature: 5778
+});
+scene.add(sun.group);
+
+
+// Create Mercury
+const mercury = new Planet({
+  name: "mercury",
+  size: 4,
+  axialTilt: 0.034,
+  axialRotationSpeed: mercuryAxialSpeed,
+  orbitRadius: 400,
+  orbitRotationSpeed: mercuryOrbitalSpeed,
+  parent: sun.group,
 });
 
-const stars = new THREE.Points(starGeometry, starMaterial);
-scene.add(stars);
 
-
-
-/////////////////////////////////////
-let scrollX = 0;
-let scrollZ = 0;
-let autoY = 0;
-
-window.addEventListener('wheel', (event) => {
-  scrollX += event.deltaY * 0.00002;
-  scrollZ += event.deltaY * 0.00004;
+// Create venus
+const venus = new Planet({
+  name: "venus",
+  size: 9.5,
+  axialTilt: 177.36,
+  axialRotationSpeed: venusAxialSpeed,
+  orbitRadius: 700,
+  orbitRotationSpeed: venusOrbitalSpeed,
+  parent: sun.group,
 });
 
 
-////////////////////////////////////
-const frustum = new THREE.Frustum();
-const cameraViewProjectionMatrix = new THREE.Matrix4();
+// Create earth
+const earth = new Planet({
+  name: "earth",
+  size: 10,
+  axialTilt: 23.44,
+  axialRotationSpeed: earthAxialSpeed,
+  cloudRotationSpeed: earthAxialSpeed * 0.3,
+  orbitRadius: 1000,
+  orbitRotationSpeed: earthOrbitalSpeed,
+  nightOpacity: 0.4,
+  cloudOpacity: 0.5,
+  parent: sun.group,
+});
 
 
-///////////////////////////////////////////////
+// Create moon
+const moon = new Planet({
+  name: "moon",
+  size: 2.7,
+  axialTilt: 6.68,
+  axialRotationSpeed: moonAxialSpeed,
+  orbitRadius: 30,
+  orbitRotationSpeed: moonOrbitalSpeed,
+  parent: earth.group,
+});
+
+
+// Create mars
+const mars = new Planet({
+  name: "mars",
+  size: 5.3,
+  axialTilt: 25.19,
+  axialRotationSpeed: marsAxialSpeed,
+  orbitRadius: 1500,
+  orbitRotationSpeed: marsOrbitalSpeed,
+  parent: sun.group,
+});
+
+
+// Create asteroid belt
+const asteroids = new Asteroids({
+  asteroidCount: 10000,
+  orbitFarRadius: 1900,
+  orbitNearRadius: 1700,
+  axialRotationSpeed: axialTimeScale * 0.000014,
+  orbitRotationSpeed: asteroidBeltOrbitalSpeed,
+  thickness: 50,
+  size: 0.8,
+  parent: sun.group,
+});
+
+
+// Create jupiter
+const jupiter = new Planet({
+  name: "jupiter",
+  size: 38,
+  axialTilt: 3.13,
+  axialRotationSpeed: jupiterAxialSpeed,
+  orbitRadius: 2600,
+  orbitRotationSpeed: jupiterOrbitalSpeed,
+  parent: sun.group,
+});
+
+
+// Create saturn
+const saturn = new Planet({
+  name: "saturn",
+  size: 34,
+  axialTilt: 26.73,
+  axialRotationSpeed: saturnAxialSpeed,
+  orbitRadius: 3600,
+  orbitRotationSpeed: saturnOrbitalSpeed,
+  parent: sun.group,
+});
+
+
+// Create saturn ring
+const saturnRing = new Asteroids({
+  asteroidCount: 6000,
+  orbitFarRadius: 65,
+  orbitNearRadius: 40,
+  axialRotationSpeed: 0.005,
+  orbitRotationSpeed: saturnRingOrbitalSpeed * 0.5, // 5x slower for simulation purpose
+  thickness: 0.6,
+  size: 0.16,
+  roughness: 0.9,
+  metalness: 0.0,
+  color: 0xdfe6f0,
+  parent: saturn.group,
+});
+
+
+// Create uranus
+const uranus = new Planet({
+  name: "uranus",
+  size: 20,
+  axialTilt: 97.77,
+  axialRotationSpeed: uranusAxialSpeed,
+  orbitRadius: 4600,
+  orbitRotationSpeed: uranusOrbitalSpeed,
+  parent: sun.group,
+});
+
+
+// Create uranus ring
+const uranusRing = new Asteroids({
+  asteroidCount: 1200,
+  orbitFarRadius: 50,
+  orbitNearRadius: 42,
+  axialRotationSpeed: 0.003,
+  orbitRotationSpeed: uranusRingOrbitalSpeed * 0.5, // 5x slower for simulation purpose
+  thickness: 0.3,
+  size: 0.14,
+  //color: 0x444444, // real, to dark
+  color: 0xffffff, // not real
+  parent: uranus.group,
+});
+
+
+// Create neptune
+const neptune = new Planet({
+  name: "neptune",
+  size: 19,
+  axialTilt: 28.32,
+  axialRotationSpeed: neptuneAxialSpeed,
+  orbitRadius: 5600,
+  orbitRotationSpeed: neptuneOrbitalSpeed,
+  parent: sun.group,
+});
+
+
+// Create pluto
+const pluto = new Planet({
+  name: "pluto",
+  size: 1.8,
+  axialTilt: 119.61,
+  axialRotationSpeed: plutoAxialSpeed,
+  orbitRadius: 6500,
+  orbitRotationSpeed: plutoOrbitalSpeed,
+  parent: sun.group,
+});
+
+
+function focusOnPlanet(index) {
+    if (index < 0 || index >= cameraTargets.length) return;
+
+    currentTargetIndex = index;
+    // Set the next target to the next planet in the array for smooth cycling
+    nextTargetIndex = (index + 1) % cameraTargets.length;
+}
+
+
+let cameraTargets = [
+    sun.group,
+    mercury.group,
+    venus.group,
+    earth.group,
+    moon.group,
+    mars.group,
+    jupiter.group,
+    saturn.group,
+    uranus.group,
+    neptune.group,
+    pluto.group,
+];
+
+let orbitAngle = 0;          // Current rotation around planet
+let orbitRadius = 160;     // Distance from planet
+let orbitHeight = 10;     // Height above planet
+let orbitSpeed = 0.003;     // Rotation speed
+
+let currentTargetIndex = 0;
+let nextTargetIndex = 1;
+
+// Lerp factor (controls speed of transition)
+const lerpSpeed = 0.01; // smaller = slower
+
+// Temporary vectors for calculations
+const camPos = new THREE.Vector3();
+const targetPos = new THREE.Vector3();
+const currentLookAt = new THREE.Vector3();
+
+
+let e = 0;
+
+// ///////////////////////////////////////////////
 function animate() {
   requestAnimationFrame(animate);
-  autoY += 0.00034;
 
-  scene.rotation.x = scrollX;
-  scene.rotation.z = scrollZ;
-  scene.rotation.y = autoY;
+  gameControls.update();
 
+  gameControls.update();
+  mercury.rotate();
+  venus.rotate();
+  earth.rotate();
+  moon.rotate();
+  mars.rotate();
+  asteroids.update();
+  jupiter.rotate();
+  saturn.rotate();
+  saturnRing.update();
+  uranus.rotate();
+  uranusRing.update();
+  neptune.rotate();
+  pluto.rotate();
+
+  // Get planet position
+    cameraTargets[currentTargetIndex].getWorldPosition(targetPos);
+
+    // Orbiting offset
+    orbitAngle += orbitSpeed;
+    const offsetX = Math.cos(orbitAngle) * orbitRadius;
+    const offsetZ = Math.sin(orbitAngle) * orbitRadius;
+    const offsetY = orbitHeight;
+    const offset = new THREE.Vector3(offsetX, offsetY, offsetZ);
+
+    // Desired camera position
+    const desiredPos = targetPos.clone().add(offset);
+
+    // Smooth camera movement
+    camPos.lerpVectors(camera.position, desiredPos, lerpSpeed);
+    camera.position.copy(camPos);
+
+    // Smooth look at planet
+    currentLookAt.lerpVectors(currentLookAt, targetPos, 0.01); // faster lerp
+    camera.lookAt(currentLookAt);
+
+    // Switch to next planet if close enough
+    if (camera.position.distanceTo(desiredPos) < 1) {
+        currentTargetIndex = nextTargetIndex;
+        nextTargetIndex = (nextTargetIndex + 1) % cameraTargets.length;
+        // reset orbit angle so camera orbit continues smoothly
+        orbitAngle = 0;
+    }
+
+  if (e == -1000) {
+    focusOnPlanet(0); // Sun
+    orbitRadius = 800; 
+  }
+  if (e == 0) {
+    focusOnPlanet(1); // Mercury
+    orbitRadius = 160; 
+  }
+  if (e == 1000) {
+    focusOnPlanet(2); // Venus
+    orbitRadius = 180; 
+  }
+  if (e == 2000) {
+    focusOnPlanet(3); // Earth
+    orbitRadius = 200; 
+  }
+  if (e == 3000) {
+    focusOnPlanet(4); // Moon
+    orbitRadius = 120; 
+  }
+  if (e == 4000) {
+    focusOnPlanet(5); // Mars
+    orbitRadius = 160; 
+  }
+  if (e == 5000) {
+    focusOnPlanet(6); // Jupiter
+    orbitRadius = 260; 
+  }
+  if (e == 6000) {
+    focusOnPlanet(7); // Saturn
+    orbitRadius = 260; 
+  }
+  if (e == 7000) {
+    focusOnPlanet(8); // Uranus
+    orbitRadius = 260; 
+  }
+  if (e == 8000) {
+    focusOnPlanet(9); // Neptune
+    orbitRadius = 240; 
+  }
+  if (e == 9000) {
+    focusOnPlanet(10); // Pluto
+    orbitRadius = 80; 
+  }
+  if (e == 10000) {
+    e = -2000 
+    focusOnPlanet(0); // Reset
+    orbitRadius = 800; 
+  }
+  e++;
   renderer.render(scene, camera);
-  controls.update();
 }
 
 animate();
