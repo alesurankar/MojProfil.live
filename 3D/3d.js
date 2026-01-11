@@ -2,7 +2,6 @@ import * as THREE from "three";
 import { Asteroids } from "./objects/asteroids.js"
 import { Planet } from "./objects/planet.js"
 import { Star } from "./objects/star.js";
-import { GameControls } from "./utils/gameControls.js"
 
 
 ///////////////////////////////////////////////
@@ -32,8 +31,6 @@ const ambientLight = new THREE.AmbientLight(
   1.3
 );
 scene.add(ambientLight);
-
-const gameControls = new GameControls(camera, document.body, 0.5);
 
 
 const axialTimeScale = 100;
@@ -312,9 +309,6 @@ let e = 0;
 function animate() {
   requestAnimationFrame(animate);
 
-  gameControls.update();
-
-  gameControls.update();
   mercury.rotate();
   venus.rotate();
   earth.rotate();
