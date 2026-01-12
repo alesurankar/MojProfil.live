@@ -8,7 +8,7 @@ import { Star } from "./objects/star.js";
 const scene = new THREE.Scene();
 const w = window.innerWidth;
 const h = window.innerHeight;
-const fov = 40;
+const fov = 30;
 const aspect = w / h;
 const near = 0.1;
 const far = 20000;
@@ -32,14 +32,18 @@ const ambientLight = new THREE.AmbientLight(
 );
 scene.add(ambientLight);
 
+const FIXED_FPS = 40;
+const FIXED_DT = 1 / FIXED_FPS;
+let lastTime = performance.now() / 1000;
+let accumulator = 0;
 
-const axialTimeScale = 100;
+const axialTimeScale = 200;
 function rotationSpeedFromDays(days, axialTimeScale) {
     const seconds = days * 24 * 60 * 60;
     return (2 * Math.PI / seconds) * axialTimeScale;
 }
 
-const orbitalTimeScale = 400;
+const orbitalTimeScale = 600;
 function orbitalSpeedFromDays(days, orbitalTimeScale) {
     const seconds = days * 24 * 60 * 60;
     return (2 * Math.PI / seconds) * orbitalTimeScale;
@@ -305,10 +309,8 @@ const currentLookAt = new THREE.Vector3();
 
 let e = 0;
 
-// ///////////////////////////////////////////////
-function animate() {
-  requestAnimationFrame(animate);
 
+function Update() {
   mercury.rotate();
   venus.rotate();
   earth.rotate();
@@ -354,55 +356,74 @@ function animate() {
 
   if (e == -1000) {
     focusOnPlanet(0); // Sun
-    orbitRadius = 800; 
+    orbitRadius = 1000; 
   }
   if (e == 0) {
     focusOnPlanet(1); // Mercury
-    orbitRadius = 160; 
+    orbitRadius = 200; 
   }
   if (e == 1000) {
     focusOnPlanet(2); // Venus
-    orbitRadius = 180; 
+    orbitRadius = 210; 
   }
   if (e == 2000) {
     focusOnPlanet(3); // Earth
-    orbitRadius = 200; 
+    orbitRadius = 230; 
   }
   if (e == 3000) {
     focusOnPlanet(4); // Moon
-    orbitRadius = 120; 
+    orbitRadius = 180; 
   }
   if (e == 4000) {
     focusOnPlanet(5); // Mars
-    orbitRadius = 160; 
+    orbitRadius = 200; 
   }
   if (e == 5000) {
     focusOnPlanet(6); // Jupiter
-    orbitRadius = 260; 
+    orbitRadius = 350; 
   }
   if (e == 6000) {
     focusOnPlanet(7); // Saturn
-    orbitRadius = 260; 
+    orbitRadius = 320; 
   }
   if (e == 7000) {
     focusOnPlanet(8); // Uranus
-    orbitRadius = 260; 
+    orbitRadius = 320; 
   }
   if (e == 8000) {
     focusOnPlanet(9); // Neptune
-    orbitRadius = 240; 
+    orbitRadius = 300; 
   }
   if (e == 9000) {
     focusOnPlanet(10); // Pluto
     orbitRadius = 80; 
   }
   if (e == 10000) {
-    e = -2000 
+    e = -1200 
     focusOnPlanet(0); // Reset
-    orbitRadius = 800; 
+    orbitRadius = 1000; 
   }
-  e++;
+  e+=2;
+}
+
+
+// ///////////////////////////////////////////////
+function animate(now) {
+  requestAnimationFrame(animate);
+
+  const currentTime = now / 1000;
+  let frameTime = currentTime - lastTime;
+  lastTime = currentTime;
+
+  frameTime = Math.min(frameTime, 0.25);
+  accumulator += frameTime;
+
+  while (accumulator >= FIXED_DT) {
+    Update(); // fixed-step update
+    accumulator -= FIXED_DT;
+  }
+
   renderer.render(scene, camera);
 }
 
-animate();
+requestAnimationFrame(animate);
