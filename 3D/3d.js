@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { Asteroids } from "./objects/asteroids.js"
 import { Planet } from "./objects/planet.js"
 import { Star } from "./objects/star.js";
+import { GameControls } from "./utils/gameControls.js"
 
 
 ///////////////////////////////////////////////
@@ -24,6 +25,30 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.physicallyCorrectLights = true;
 
+
+const gameControls = new GameControls(camera, document.body, 0.5);
+
+const appState = {
+  mode: "simulation"
+};
+let solarSystemRunning = true;
+
+export function enableSimulation() {
+  appState.mode = "simulation";
+
+  gameControls.enabled = false;
+  solarSystemRunning = true;
+}
+
+export function enableGameMode() {
+  appState.mode = "game";
+
+  gameControls.enabled = true;
+  solarSystemRunning = false;
+}
+
+window.enableGameMode = enableGameMode;
+window.enableSimulation = enableSimulation;
 
 // Ambient light, for simulation purposes
 const ambientLight = new THREE.AmbientLight(
@@ -310,49 +335,35 @@ const currentLookAt = new THREE.Vector3();
 let e = 0;
 
 
-function Update() {
-  mercury.rotate();
-  venus.rotate();
-  earth.rotate();
-  moon.rotate();
-  mars.rotate();
-  asteroids.update();
-  jupiter.rotate();
-  saturn.rotate();
-  saturnRing.update();
-  uranus.rotate();
-  uranusRing.update();
-  neptune.rotate();
-  pluto.rotate();
-
+function updatePlanets() {
   // Get planet position
-    cameraTargets[currentTargetIndex].getWorldPosition(targetPos);
+  cameraTargets[currentTargetIndex].getWorldPosition(targetPos);
 
-    // Orbiting offset
-    orbitAngle += orbitSpeed;
-    const offsetX = Math.cos(orbitAngle) * orbitRadius;
-    const offsetZ = Math.sin(orbitAngle) * orbitRadius;
-    const offsetY = orbitHeight;
-    const offset = new THREE.Vector3(offsetX, offsetY, offsetZ);
+  // Orbiting offset
+  orbitAngle += orbitSpeed;
+  const offsetX = Math.cos(orbitAngle) * orbitRadius;
+  const offsetZ = Math.sin(orbitAngle) * orbitRadius;
+  const offsetY = orbitHeight;
+  const offset = new THREE.Vector3(offsetX, offsetY, offsetZ);
 
-    // Desired camera position
-    const desiredPos = targetPos.clone().add(offset);
+  // Desired camera position
+  const desiredPos = targetPos.clone().add(offset);
 
-    // Smooth camera movement
-    camPos.lerpVectors(camera.position, desiredPos, lerpSpeed);
-    camera.position.copy(camPos);
+  // Smooth camera movement
+  camPos.lerpVectors(camera.position, desiredPos, lerpSpeed);
+  camera.position.copy(camPos);
 
-    // Smooth look at planet
-    currentLookAt.lerpVectors(currentLookAt, targetPos, 0.01); // faster lerp
-    camera.lookAt(currentLookAt);
+  // Smooth look at planet
+  currentLookAt.lerpVectors(currentLookAt, targetPos, 0.01); // faster lerp
+  camera.lookAt(currentLookAt);
 
-    // Switch to next planet if close enough
-    if (camera.position.distanceTo(desiredPos) < 1) {
-        currentTargetIndex = nextTargetIndex;
-        nextTargetIndex = (nextTargetIndex + 1) % cameraTargets.length;
-        // reset orbit angle so camera orbit continues smoothly
-        orbitAngle = 0;
-    }
+  // Switch to next planet if close enough
+  if (camera.position.distanceTo(desiredPos) < 1) {
+      currentTargetIndex = nextTargetIndex;
+      nextTargetIndex = (nextTargetIndex + 1) % cameraTargets.length;
+      // reset orbit angle so camera orbit continues smoothly
+      orbitAngle = 0;
+  }
 
   if (e == -1000) {
     focusOnPlanet(0); // Sun
@@ -404,6 +415,31 @@ function Update() {
     orbitRadius = 1000; 
   }
   e+=2;
+}
+
+
+function Update() {
+  mercury.rotate();
+  venus.rotate();
+  earth.rotate();
+  moon.rotate();
+  mars.rotate();
+  asteroids.update();
+  jupiter.rotate();
+  saturn.rotate();
+  saturnRing.update();
+  uranus.rotate();
+  uranusRing.update();
+  neptune.rotate();
+  pluto.rotate();
+
+  if (solarSystemRunning) {
+    updatePlanets();
+  }
+
+  if (appState.mode === "game") {
+    gameControls.update();
+  }
 }
 
 

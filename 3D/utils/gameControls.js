@@ -2,14 +2,16 @@ import * as THREE from "three";
 import { PointerLockControls } from "jsm/controls/PointerLockControls.js";
 
 export class GameControls {
-  constructor(camera, domElement = document.body, speed = 3.3) {
+  constructor(camera, domElement = document.body, speed = 5.0) {
     this.camera = camera;
     this.speed = speed;
+    this.enabled = false;
 
   // PointerLockControls for mouse-look
     this.controls = new PointerLockControls(camera, domElement);
 
     domElement.addEventListener("click", () => {
+      if (!this.enabled) return;
       this.controls.lock();
     });
 
@@ -34,7 +36,7 @@ export class GameControls {
       case "KeyS": this.move.backward = true; break;
       case "KeyA": this.move.left = true; break;
       case "KeyD": this.move.right = true; break;
-      case "KeyV": this.move.fast = true; break;
+      case "KeyV": this.move.down = true; break;
       case "ShiftLeft": this.move.fast = true; break;
       case "Space": this.move.up = true; break;
     }
@@ -46,7 +48,7 @@ export class GameControls {
       case "KeyS": this.move.backward = false; break;
       case "KeyA": this.move.left = false; break;
       case "KeyD": this.move.right = false; break;
-      case "KeyV": this.move.fast = false; break;
+      case "KeyV": this.move.down = false; break;
       case "ShiftLeft": this.move.fast = false; break;
       case "Space": this.move.up = false; break;
     }
@@ -60,8 +62,8 @@ export class GameControls {
     this.camera.getWorldDirection(direction);
 
     let speed = this.speed;
-    if (this.move.fast) speed = 3;
-    if (this.move.slow) speed = 0.3;
+    if (this.move.fast) speed = 10.0;
+    if (this.move.slow) speed = 2.5;
 
     // Forward / Back
     if (this.move.forward) velocity.add(direction.clone().multiplyScalar(speed));

@@ -17,6 +17,11 @@ async function loadPage(event, url) {
     console.error('Fetch error:', err);
     content.innerHTML = '<p>Error loading page.</p>';
   }
+  if (url.includes('3D/')) {
+    window.enableGameMode?.();
+  } else {
+      window.enableSimulation?.();
+  }
 
   const navLis = document.querySelectorAll('.navbar ul li');
   navLis.forEach(item => item.classList.remove('active'));
