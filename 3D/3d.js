@@ -37,13 +37,13 @@ const FIXED_DT = 1 / FIXED_FPS;
 let lastTime = performance.now() / 1000;
 let accumulator = 0;
 
-const axialTimeScale = 200;
+const axialTimeScale = 140;
 function rotationSpeedFromDays(days, axialTimeScale) {
     const seconds = days * 24 * 60 * 60;
     return (2 * Math.PI / seconds) * axialTimeScale;
 }
 
-const orbitalTimeScale = 600;
+const orbitalTimeScale = 1000;
 function orbitalSpeedFromDays(days, orbitalTimeScale) {
     const seconds = days * 24 * 60 * 60;
     return (2 * Math.PI / seconds) * orbitalTimeScale;
@@ -146,7 +146,7 @@ const moon = new Planet({
   axialTilt: 6.68,
   axialRotationSpeed: moonAxialSpeed,
   orbitRadius: 30,
-  orbitRotationSpeed: moonOrbitalSpeed,
+  orbitRotationSpeed: moonOrbitalSpeed - earthAxialSpeed/2,
   parent: earth.group,
 });
 
