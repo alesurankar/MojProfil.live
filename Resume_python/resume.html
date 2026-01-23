@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
+    <title>Resume Website</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,23 +27,25 @@
                 <p><strong>Website: </strong></p><a href="https://www.mojprofil.live/" target="_blank" rel="noopener noreferrer">https://www.mojprofil.live/</a>
                 <h2>Skills</h2>
                 <ul>
-                    <li>HTML, CSS, JavaScript</li>
-                    <li>Vue.js & Vuetify</li>
-                    <li>React & Tailwind.css</li>
-                    <li>TypeScript</li>
-                    <li>C++ (Standard Library, Modern C++)</li>
-                    <li>OpenGL</li>
-                    <li>DirectX 11</li>
-                    <li>CEF</li>
-                    <li>Qt</li>
-                    <li>Python</li>
+                    <li>Python (core, data analysis, FastAPI)</li>
+                    <li>C++ (Modern C++, RAII, OOP, Templates, Move Semantics)</li>
+                    <li>JavaScript, TypeScript, HTML, CSS</li>
+                    <li>Vue.js & Vuetify, React & Tailwind.css</li>
+                    <li>OpenGL, DirectX 11, CEF, Qt</li>
                 </ul>
                 <h2>Programming Experience</h2>
+                <h3>Python</h3>
+                <ul>
+                    <li>2 years experience with Python programming, including networking and data handling</li>
+                    <li>Built client-server applications using Python and C++ integration</li>
+                    <li>Libraries & Frameworks: FastAPI, Flask, Pygame, NumPy, Tkinter, Matplotlib</li>
+                    <li>also was experimenting with TCP and UDP</li>
+                </ul>
                 <h3>C++</h3>
                 <ul>
                     <li>2 years of experience with Standard C++ (RAII, Templates, Move Semantics, OOP)</li>
                     <li>1 year experience with Win32 API, OpenGL, DirectX 11</li>
-                    <li>1 year experience with CEF and Qt for desktop apps</li>
+                    <li>6 months experience with CEF and Qt for desktop apps</li>
                     <h4>Libraries & Frameworks</h4>
                     <ul>
                         <li>Dear ImGui</li>
@@ -53,13 +55,11 @@
                         <li>Boost.Beast</li>
                     </ul>
                 </ul>
-
                 <h3>Frontend Web Development</h3>
                 <ul>
                     <li>1 year building responsive web pages (HTML, CSS, JS)</li>
-                    <li>Experience in Typescript</li>
+                    <li>Basic TypeScript experience</li>
                     <li>Familiar with Vue.js & Vuetify</li>
-                    <li>Experience with React and Tailwind.css</li>
                 </ul>
                 <h2>Open Source Contributions</h2>
                 <h3>facebookexperimental/Verax (Meta) - Contributor</h3>
@@ -76,16 +76,16 @@
                 <!-- Project 1 -->
                 <article class="project">
                     <h3><a href="https://github.com/alesurankar/NinjaStrike" target="_blank" rel="noopener noreferrer">(2D RPG game in DirectX 11)</a></h3>
-                    <p><strong>Duration:</strong> November 2024 - Present</p>
+                    <p><strong>Duration:</strong> November 2024 - July 2025</p>
                     <p><strong>Goal:</strong> Gain hands-on experience and deepen practical knowledge of C++</p>
                     <p><strong>Tech Stack:</strong> C++, DirectX 11, Win32 API</p>
                     <ul>
-                        <li>Implemented per-pixel clipping for rendering, bypassing standard graphics pipeline.</li>
-                        <li>Managed entity lifetimes using <code>std::unique_ptr</code> and dynamic container management with <code>std::vector</code>.</li>
-                        <li>Built a custom in-game menu system from scratch.</li>
-                        <li>Utilized Templates, OOP, Inheritance, Move Semantics, RAII, and multithreading.</li>
+                        <li>Designed systems managing entities with <code>std::vector</code> and <code>std::unique_ptr</code> (analogous to structured data handling).</li>
+                        <li>Implemented custom menus and rendering pipelines from scratch, emphasizing algorithmic and problem-solving skills.</li>
+                        <li>Applied multithreading and object-oriented programming to manage concurrent tasks (transferable to Python backend applications).</li>
                     </ul>
                 </article>
+
 
                 <!-- Project 2 -->
                 <article class="project">
@@ -100,14 +100,25 @@
                             FastAPI Integration (Python)
                         </a>
                     </h3>
-                    <p><strong>Duration:</strong> March 2025 - Present</p>
-                    <p><strong>Goal:</strong> Integrate C++ and Python by building a networked game architecture with Boost and FastAPI</p>
-                    <p><strong>Tech Stack:</strong> C++ (Boost.Asio), Python (FastAPI, Flask, Tkinter), PostgreSQL</p>
+                    <p><strong>Duration:</strong> March 2025 - July 2025</p>
+                    <p><strong>Goal:</strong> Integrate Python and C++ for networked game architecture; database-driven backend</p>
+                    <p><strong>Tech Stack:</strong> Python (FastAPI, Flask, Tkinter), C++ (Boost.Asio), PostgreSQL</p>
                     <ul>
-                        <li>Implemented asynchronous client-server communication for player movement.</li>
-                        <li>Database integration via FastAPI for user state and registration/login handling.</li>
-                        <li>C++ client handles input on a dedicated networking thread while a separate thread renders graphics.</li>
-                        <li>Server manages game state calculation asynchronously and updates database every 10 seconds.</li>
+                        <li>Asynchronously integrated database queries to update and retrieve structured player data.</li>
+                        <li>Developed backend services with FastAPI for player authentication, registration, and state management (Python).</li>
+                        <li>Handled client-server communication with C++ while Python orchestrates data flow between database and server.</li>
+                        <li>Applied asynchronous programming and multithreading concepts, transferable to Python backend and data pipelines.</li><br><br>
+                    </ul>
+                </article>
+
+                
+                <!-- Project 3 -->
+                <article class="project">
+                    <h3>
+                        <a href="https://github.com/alesurankar/python_practice/tree/main/tk_mpl_app" target="_blank" rel="noopener noreferrer">Custom plotting engine on top of Matplotlib</a>
+                    </h3>
+                    <ul>
+                        <li>supporting multiple graph types and embedded within a Tkinter-based GUI.</li>
                     </ul>
                 </article>
             </div>
