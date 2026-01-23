@@ -9,17 +9,20 @@ async function loadPage(event, url) {
     const res = await fetch(url);
     if (!res.ok) {
       content.innerHTML = '<p>Page not found.</p>';
-    } else {
+    } 
+    else {
       const html = await res.text();
       content.innerHTML = html;
     }
-  } catch (err) {
+  } 
+  catch (err) {
     console.error('Fetch error:', err);
     content.innerHTML = '<p>Error loading page.</p>';
   }
   if (url.includes('3D/')) {
     window.enableGameMode?.();
-  } else {
+  } 
+  else {
       window.enableSimulation?.();
   }
 
@@ -32,10 +35,13 @@ async function loadPage(event, url) {
     if (li) {
       li.classList.add('active');
     }
-  } else {
+  } 
+  else {
     const homeLi = document.querySelector(".navbar ul li a[href='Home/home.html']")?.closest('li') ||
                    document.querySelector('.navbar ul li');
-    if (homeLi) homeLi.classList.add('active');
+    if (homeLi) {
+      homeLi.classList.add('active');
+    } 
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
