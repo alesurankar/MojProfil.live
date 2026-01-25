@@ -24,7 +24,7 @@ export class Star {
     const starColor = this.colorFromTemperature(temperature);
 
     // geometry
-    const geometry = new THREE.IcosahedronGeometry(size, 12);
+    const geometry = new THREE.IcosahedronGeometry(size, 4);
 
     // material
     const material = new THREE.MeshBasicMaterial({

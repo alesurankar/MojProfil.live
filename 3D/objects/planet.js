@@ -39,7 +39,7 @@ export class Planet {
 
 
         // Geometry
-        const geometry = new THREE.IcosahedronGeometry(size, 12);
+        const geometry = new THREE.IcosahedronGeometry(size, 5);
 
         // Day material
         const dayMat = new THREE.MeshStandardMaterial({
