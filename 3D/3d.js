@@ -190,7 +190,7 @@ const mars = new Planet({
 
 // Create asteroid belt
 const asteroids = new Asteroids({
-  asteroidCount: 10000,
+  asteroidCount: 9000,
   orbitFarRadius: 1900,
   orbitNearRadius: 1700,
   axialRotationSpeed: axialTimeScale * 0.000014,
@@ -227,7 +227,7 @@ const saturn = new Planet({
 
 // Create saturn ring
 const saturnRing = new Asteroids({
-  asteroidCount: 6000,
+  asteroidCount: 5000,
   orbitFarRadius: 65,
   orbitNearRadius: 40,
   axialRotationSpeed: 0.005,
@@ -255,7 +255,7 @@ const uranus = new Planet({
 
 // Create uranus ring
 const uranusRing = new Asteroids({
-  asteroidCount: 1200,
+  asteroidCount: 1000,
   orbitFarRadius: 50,
   orbitNearRadius: 42,
   axialRotationSpeed: 0.003,
