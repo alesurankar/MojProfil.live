@@ -160,6 +160,7 @@ const earth = new Planet({
   orbitRotationSpeed: earthOrbitalSpeed,
   nightOpacity: 0.4,
   cloudOpacity: 0.5,
+  detail: 7,
   parent: sun.group,
 });
 

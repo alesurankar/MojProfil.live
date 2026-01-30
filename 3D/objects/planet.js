@@ -14,6 +14,7 @@ export class Planet {
         nightTexture = "night.jpg",
         cloudTexture = "clouds.jpg",
         nightOpacity = 0,
+        detail = 5,
         cloudOpacity = 0,
         parent = null, 
     } = {}) {
@@ -39,7 +40,7 @@ export class Planet {
 
 
         // Geometry
-        const geometry = new THREE.IcosahedronGeometry(size, 5);
+        const geometry = new THREE.IcosahedronGeometry(size, detail);
 
         // Day material
         const dayMat = new THREE.MeshStandardMaterial({

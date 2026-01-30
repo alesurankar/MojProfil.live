@@ -8,6 +8,7 @@ export class Star {
     axialRotationSpeed = 0,
     position = new THREE.Vector3(10, 10, 50),
     temperature = 5778,
+    detail = 4,
     texturesPath = "./3D/textures",
   } = {}) {
     this.loader = new THREE.TextureLoader();
@@ -24,7 +25,7 @@ export class Star {
     const starColor = this.colorFromTemperature(temperature);
 
     // geometry
-    const geometry = new THREE.IcosahedronGeometry(size, 4);
+    const geometry = new THREE.IcosahedronGeometry(size, detail);
 
     // material
     const material = new THREE.MeshBasicMaterial({
