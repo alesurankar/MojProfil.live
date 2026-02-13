@@ -252,8 +252,8 @@ export class SolarSystem
         this.sun.objectRoot.getWorldPosition(sunPos);
 
         // Orbit parameters
-        const orbitRadius = this.sunSize * 40;
-        const orbitHeight = this.sunSize * 5;
+        const orbitRadius = this.sunSize * 35;
+        const orbitHeight = this.sunSize * 8;
         const orbitSpeed = 0.002;
 
         this._orbitAngle = (this._orbitAngle || 0) + orbitSpeed;
