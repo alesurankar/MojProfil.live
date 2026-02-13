@@ -26,6 +26,7 @@ export class SolarSystem
         this.objects = [];
         const sizeFactor = 1
         const sunSize = 110 * sizeFactor; 
+        this.sunSize = sunSize;
         const wormholeSize = 100 * sizeFactor;
         const mercurySize = 4 * sizeFactor;
         const venusSize = 9.5 * sizeFactor;
@@ -247,7 +248,50 @@ export class SolarSystem
 
     SimulationUpdate()
     {
-        
+        const sunPos = new THREE.Vector3();
+        this.sun.objectRoot.getWorldPosition(sunPos);
+
+        // Orbit parameters
+        const orbitRadius = this.sunSize * 40;
+        const orbitHeight = this.sunSize * 5;
+        const orbitSpeed = 0.002;
+
+        this._orbitAngle = (this._orbitAngle || 0) + orbitSpeed;
+
+        // Target orbit position
+        const targetPos = new THREE.Vector3(
+            sunPos.x + Math.cos(this._orbitAngle) * orbitRadius,
+            sunPos.y + orbitHeight,
+            sunPos.z + Math.sin(this._orbitAngle) * orbitRadius
+        );
+
+        // Initialize transition
+        if (!this._transitioning) {
+            this._camPosCurrent = this.camera.position.clone();
+            // Get a point in front of camera as starting lookAt
+            const dir = new THREE.Vector3();
+            this.camera.getWorldDirection(dir);
+            this._lookAtCurrent = this.camera.position.clone().add(dir.multiplyScalar(1000));
+            this._transitioning = true;
+        }
+
+        // Smooth transition
+        if (this._transitioning) {
+            this._camPosCurrent.lerp(targetPos, 0.05);
+            this._lookAtCurrent.lerp(sunPos, 0.05);
+
+            this.camera.position.copy(this._camPosCurrent);
+            this.camera.lookAt(this._lookAtCurrent);
+
+            if (this._camPosCurrent.distanceTo(targetPos) < 0.1) {
+                this._transitioning = false;
+            }
+        } 
+        else {
+            // Orbit normally
+            this.camera.position.copy(targetPos);
+            this.camera.lookAt(sunPos);
+        }
     }
 
     Update(dt) 

@@ -104,8 +104,50 @@ export class EarthOrbit
 
     SimulationUpdate()
     {
-        
+        const earthPos = new THREE.Vector3();
+        this.earth.objectRoot.getWorldPosition(earthPos);
+
+        // Orbit parameters
+        const orbitRadius = this.earthSize * 4;
+        const orbitHeight = this.earthSize * 0.5;
+        const orbitSpeed = 0.002;
+
+        // Increment orbit angle
+        this._orbitAngle = (this._orbitAngle || 0) + orbitSpeed;
+
+        // Compute target orbit position
+        const targetX = earthPos.x + Math.cos(this._orbitAngle) * orbitRadius;
+        const targetY = earthPos.y + orbitHeight;
+        const targetZ = earthPos.z + Math.sin(this._orbitAngle) * orbitRadius;
+        const targetPos = new THREE.Vector3(targetX, targetY, targetZ);
+
+        // Initialize transition if not yet started
+        if (!this._transitioning) {
+            this._camPosCurrent = this.camera.position.clone();   // start from current camera pos
+            this._lookAtCurrent = new THREE.Vector3();
+            this.camera.getWorldDirection(this._lookAtCurrent);   // get current camera look direction
+            this._transitioning = true;
+        }
+
+        // Smooth transition
+        if (this._transitioning) {
+            this._camPosCurrent.lerp(targetPos, 0.02);
+            this._lookAtCurrent.lerp(earthPos, 0.05);
+
+            this.camera.position.copy(this._camPosCurrent);
+            this.camera.lookAt(this._lookAtCurrent);
+
+            // Stop transitioning if close enough
+            if (this._camPosCurrent.distanceTo(targetPos) < 0.1) {
+                this._transitioning = false;
+            }
+        } else {
+            // Orbit normally
+            this.camera.position.copy(targetPos);
+            this.camera.lookAt(earthPos);
+        }
     }
+
 
     Update(dt) 
     {
