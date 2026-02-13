@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+@import url("Home/style.css");
+@import url("About/style.css");
+@import url("Skills/style.css");
+@import url("Portfolio/style.css");
+@import url("Contact/style.css");
+@import url("3d_/3d.css");
 
 * {
     margin: 0;
@@ -13,8 +19,7 @@
 }
 
 a {
-    color: #1f242d;
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
 }
 
