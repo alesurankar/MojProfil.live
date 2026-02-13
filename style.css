@@ -1,11 +1,4 @@
 
-@import url("Home/style.css");
-@import url("About/style.css");
-@import url("Skills/style.css");
-@import url("Portfolio/style.css");
-@import url("Contact/style.css");
-@import url("3d_/3d.css");
-
 * {
     margin: 0;
     padding: 0;
