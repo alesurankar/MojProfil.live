@@ -3,7 +3,7 @@ import { Planet } from "../../entities/planet.js";
 import { Star } from "../../entities/star.js";
 import { StarSystem } from "../../utils/starSystemHelper.js"
 import { SkyBox } from "../../visuals/skyBox.js";
-import { Asteroid } from "../../entities/asteroid.js";
+import { AsteroidBelt } from "../../entities/asteroidBelt.js";
 import { BlackHole } from "../../entities/blackHole.js";
 
 export class SolarSystem 
@@ -31,13 +31,13 @@ export class SolarSystem
         const venusSize = 9.5 * sizeFactor;
         const earthSize = 10 * sizeFactor;
         const moonSize = 2.7 * sizeFactor;
-        const asteroidBeltSize = 1 * sizeFactor;
+        const asteroidBeltSize = 1.2 * sizeFactor;
         const marsSize = 5.3 * sizeFactor;
         const jupiterSize = 38 * sizeFactor;
         const saturnSize = 34 * sizeFactor;
-        const saturnRingSize = 0.16 * sizeFactor;
+        const saturnRingSize = 0.2 * sizeFactor;
         const uranusSize = 20 * sizeFactor;
-        const uranusRingSize = 0.14 * sizeFactor;
+        const uranusRingSize = 0.16 * sizeFactor;
         const neptuneSize = 19 * sizeFactor;
         const plutoSize = 1.8 * sizeFactor;
 
@@ -131,20 +131,17 @@ export class SolarSystem
         this.objects.push(this.mars);
 
         // Create asteroid belt
-        const asteroidCount = 2000;
-        for (let i = 0; i < asteroidCount; i++) {
-            const asteroid = new Asteroid({
-                size: asteroidBeltSize,
-                orbitFarRadius: 1900,
-                orbitNearRadius: 1700,
-                orbitalTilt: 0.0,
-                axialRotationSpeed: 0.0004,
-                orbitalSpeed: StarSystem.OrbitalRotationInDays(1570),
-                thickness: 50,
-                parent: this.sun.objectRoot
-            });
-            this.objects.push(asteroid);
-        }
+        this.asteroidBelt = new AsteroidBelt({
+            count: 6000,
+            size: asteroidBeltSize,
+            orbitFarRadius: 1900,
+            orbitNearRadius: 1700,
+            axialRotationSpeed: 0.0004,
+            orbitalSpeed: StarSystem.OrbitalRotationInDays(1570),
+            thickness: 50,
+            parent: this.sun.objectRoot
+        });
+        this.objects.push(this.asteroidBelt);
         
         // Create jupiter
         this.jupiter = new Planet({
@@ -173,21 +170,18 @@ export class SolarSystem
         this.objects.push(this.saturn);
 
         // Create saturn ring
-        const saturnRingCount = 2000;
-        for (let i = 0; i < saturnRingCount; i++) {
-            const saturnRing = new Asteroid({
-                size: saturnRingSize,
-                orbitFarRadius: 65,
-                orbitNearRadius: 40,
-                orbitalTilt: 0,
-                axialRotationSpeed: 0.005,
-                orbitalSpeed: StarSystem.OrbitalRotationInDays(0.6),
-                thickness: 0.6,   
-                color: 0xdfe6f0,
-                parent: this.saturn.axialFrame
-            });
-            this.objects.push(saturnRing);
-        }
+        this.saturnRing = new AsteroidBelt({
+            count: 6000,
+            size: saturnRingSize,
+            orbitFarRadius: 65,
+            orbitNearRadius: 40,
+            axialRotationSpeed: 0.005,
+            orbitalSpeed: StarSystem.OrbitalRotationInDays(0.6),
+            thickness: 0.6,   
+            color: 0xdfe6f0,
+            parent: this.saturn.axialFrame
+        });
+        this.objects.push(this.saturnRing);
         
         // Create uranus
         this.uranus = new Planet({
@@ -202,24 +196,20 @@ export class SolarSystem
         });
         this.objects.push(this.uranus);
 
-        // // Create uranus ring
-        this.uranusRing = [];
-        const uranusRingCount = 600;
-        for (let i = 0; i < uranusRingCount; i++) {
-            const uranusRing = new Asteroid({
-                size: uranusRingSize,
-                orbitFarRadius: 50,
-                orbitNearRadius: 42,
-                orbitalTilt: 0,
-                axialRotationSpeed: 0.003,
-                orbitalSpeed: StarSystem.OrbitalRotationInDays(0.26),
-                thickness: 0.3,   
-                //color: 0x444444, // real, to dark
-                color: 0xffffff, // not real
-                parent: this.uranus.axialFrame
-            });
-            this.objects.push(uranusRing);
-        }
+        // Create uranus ring
+        this.uranusRing = new AsteroidBelt({
+            count: 1800,
+            size: uranusRingSize,
+            orbitFarRadius: 50,
+            orbitNearRadius: 42,
+            axialRotationSpeed: 0.003,
+            orbitalSpeed: StarSystem.OrbitalRotationInDays(0.26),
+            thickness: 0.3,   
+            //color: 0x444444, // real, to dark
+            color: 0xffffff, // not real
+            parent: this.uranus.axialFrame
+        });
+        this.objects.push(this.uranusRing);
         
         // Create neptune
         this.neptune = new Planet({

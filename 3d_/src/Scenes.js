@@ -1,4 +1,3 @@
-import { TestScene } from "../app/scenes/testScene.js";
 //Galaxies
 import { MilkyWay } from "../app/scenes/galaxies/milkyWay.js";
 //Systems
@@ -11,7 +10,6 @@ import { JupiterOrbit } from "../app/scenes/worlds/jupiterOrbit.js";
 
 
 export const Scenes = {
-    TestScene,
     //Galaxies
     MilkyWay,
     //Systems
