@@ -19,11 +19,13 @@ async function loadPage(event, url) {
     console.error('Fetch error:', err);
     content.innerHTML = '<p>Error loading page.</p>';
   }
-  if (url.includes('3D/')) {
+
+  if (url.includes("3d_/")) {
     window.enableGameMode?.();
+    window.bind3DUI?.();
   } 
   else {
-      window.enableSimulation?.();
+    window.enableSimulation?.();
   }
 
   const navLis = document.querySelectorAll('.navbar ul li');

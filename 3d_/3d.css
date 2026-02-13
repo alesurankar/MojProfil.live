@@ -1,0 +1,47 @@
+.three {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    animation: show-contact 0.8s ease forwards;
+    animation-delay: 0.2s;
+    z-index: 10;
+}
+
+body {
+  margin: 0;
+}
+
+#bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+
+#ui {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  color: white;
+
+  padding: 12px;
+  border-radius: 10px;
+  font-family: system-ui, sans-serif;
+}
+
+#ui button,
+#ui input {
+  margin-top: 6px;
+  width: 100%;
+}
