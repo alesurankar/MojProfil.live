@@ -102,6 +102,11 @@ export class EarthOrbit
         this.objects.push(this.sun);
     }
 
+    SimulationUpdate()
+    {
+        
+    }
+
     Update(dt) 
     {
         this.objects.forEach(obj => obj.Update(dt));

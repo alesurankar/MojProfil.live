@@ -250,6 +250,11 @@ export class MilkyWay
         return Math.random() * (max - min) + min;
     }
 
+    SimulationUpdate()
+    {
+        
+    }
+
     Update(dt) 
     {
         for (const obj of this.objects) {

@@ -50,4 +50,9 @@ export class SceneManager
         this.SwitchScene(requested);
         this.currentScene.requestedScene = null;
     }
+
+    SimulationUpdate()
+    {
+        if (this.currentScene) this.currentScene.SimulationUpdate();
+    }
 }

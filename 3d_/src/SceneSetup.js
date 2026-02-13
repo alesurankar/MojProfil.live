@@ -14,7 +14,10 @@ const manager = new SceneManager(Scene, Camera);
 
 manager.LoadScene(SolarSystem);
 
-export function Update(timeScale) 
+export function Update(timeScale, mode) 
 {
     manager.Update(timeScale);
+    if (mode === "simulation") {
+        manager.SimulationUpdate();
+    }
 }

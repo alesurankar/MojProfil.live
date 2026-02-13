@@ -245,6 +245,11 @@ export class SolarSystem
         ];
     }
 
+    SimulationUpdate()
+    {
+        
+    }
+
     Update(dt) 
     {
         this.objects.forEach(obj => obj.Update(dt));

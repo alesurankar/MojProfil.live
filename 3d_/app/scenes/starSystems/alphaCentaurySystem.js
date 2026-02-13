@@ -72,6 +72,11 @@ export class AlphaCenturySystem
             { obj: this.wormhole, threshold: wormholeSize / 2, scene: "MilkyWay" },
         ];
     }
+
+    SimulationUpdate()
+    {
+        
+    }
     
     Update(dt) 
     {
