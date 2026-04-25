@@ -14,9 +14,13 @@ export class UI
 
   Build()
   {
-    this.AddButton("Lock", () => {
-      this.engine.ToggleLock();
-    });
+    const isTouch = navigator.maxTouchPoints > 0;
+
+    if (!isTouch) {
+      this.AddButton("Lock", () => {
+        this.engine.ToggleLock();
+      });
+    }
     this.AddSlider("testSlider", 1, 10, 3, (v) => {
       console.log("slider value:", v);
     });
