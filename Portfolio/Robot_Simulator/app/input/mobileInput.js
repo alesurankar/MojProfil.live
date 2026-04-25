@@ -5,38 +5,63 @@ export class MobileInput
     this.input = input;
     this.dom = dom;
 
-    this.startX = 0;
-    this.startY = 0;
     this.active = false;
+    this.mode = "none"; // "move" | "look"
+
+    this.lastX = 0;
+    this.lastY = 0;
+
+    dom.style.touchAction = "none";
 
     dom.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+
       const t = e.touches[0];
-      this.startX = t.clientX;
-      this.startY = t.clientY;
+
+      this.lastX = t.clientX;
+      this.lastY = t.clientY;
+
       this.active = true;
-    });
+
+      // decide mode ONCE
+      this.mode = (t.clientX < window.innerWidth * 0.5)
+        ? "move"
+        : "look";
+
+    }, { passive: false });
 
     dom.addEventListener("touchmove", (e) => {
+      e.preventDefault();
       if (!this.active) return;
 
       const t = e.touches[0];
 
-      const dx = t.clientX - this.startX;
-      const dy = t.clientY - this.startY;
+      const dx = t.clientX - this.lastX;
+      const dy = t.clientY - this.lastY;
 
-      // look (camera rotation)
-      this.input.lookDelta.x = dx * 0.002;
-      this.input.lookDelta.y = dy * 0.002;
+      this.lastX = t.clientX;
+      this.lastY = t.clientY;
 
-      // movement (still simple digital for now)
-      this.input.move.forward = dy < -10;
-      this.input.move.backward = dy > 10;
-      this.input.move.left = dx < -10;
-      this.input.move.right = dx > 10;
-    });
+      if (this.mode === "move")
+      {
+        const threshold = 5;
+
+        this.input.move.forward  = dy < -threshold;
+        this.input.move.backward = dy > threshold;
+        this.input.move.left     = dx < -threshold;
+        this.input.move.right    = dx > threshold;
+      }
+      else if (this.mode === "look")
+      {
+        this.input.lookDelta.x = dx * 0.002;
+        this.input.lookDelta.y = dy * 0.002;
+      }
+
+    }, { passive: false });
 
     dom.addEventListener("touchend", () => {
       this.active = false;
+      this.mode = "none";
 
       this.input.move.forward = false;
       this.input.move.backward = false;

@@ -17,7 +17,7 @@ export class Engine
     this.timeScale = 1;
 
     this.input = new InputState();
-    const isTouch = "ontouchstart" in window;
+    const isTouch = navigator.maxTouchPoints > 0;
 
     if (isTouch) {
       new MobileInput(this.input, document.body);
