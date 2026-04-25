@@ -1,0 +1,34 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#ui {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  color: white;
+
+  padding: 12px;
+  border-radius: 10px;
+  font-family: system-ui, sans-serif;
+}
+
+#ui button,
+#ui input {
+  margin-top: 6px;
+  width: 100%;
+}
