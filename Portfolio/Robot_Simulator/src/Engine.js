@@ -1,5 +1,8 @@
 import { Scene, Update as SceneUpdate } from "./SceneSetup.js";
-import { GameControls } from "../app/utils/gameControls.js"
+import { GameControls } from "../app/utils/gameControls.js";
+import { DesktopInput } from "../app/input/desktopInput.js";
+import { MobileInput } from "../app/input/mobileInput.js";
+import { InputState } from "../app/input/inputState.js";
 import { Camera, Renderer } from "./RendererSetup.js";
 
 
@@ -13,7 +16,16 @@ export class Engine
     this.accumulator = 0;
     this.timeScale = 1;
 
-    this.gameControls = new GameControls(Camera, document.body);
+    this.input = new InputState();
+    const isTouch = "ontouchstart" in window;
+
+    if (isTouch) {
+      new MobileInput(this.input, document.body);
+    } 
+    else {
+      new DesktopInput(this.input);
+    }
+    this.gameControls = new GameControls(Camera, this.input);
     this.MainLoop = this.MainLoop.bind(this);
   }
 
@@ -32,8 +44,6 @@ export class Engine
       SceneUpdate(this.timeScale);
       this.accumulator -= this.FIXED_DT;
     }
-
-    // Render
     Renderer.render(Scene, Camera);
     requestAnimationFrame(this.MainLoop);
   }
