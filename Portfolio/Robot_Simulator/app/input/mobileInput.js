@@ -11,7 +11,7 @@ export class MobileInput
     this.lastX = 0;
     this.lastY = 0;
 
-    dom.style.touchAction = "none";
+    //dom.style.touchAction = "none";
 
     dom.addEventListener("touchstart", (e) => {
       e.preventDefault();
@@ -31,7 +31,7 @@ export class MobileInput
     }, { passive: false });
 
     dom.addEventListener("touchmove", (e) => {
-      e.preventDefault();
+      //e.preventDefault();
       if (!this.active) return;
 
       const t = e.touches[0];
