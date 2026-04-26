@@ -20,12 +20,12 @@ export class Engine
     this.blackboard = new Blackboard();
     const isTouch = navigator.maxTouchPoints > 0;
 
-    if (isTouch) {
-      new MobileInput(this.input, document.body);
-    } 
-    else {
+    //if (isTouch) {
+    //  new MobileInput(this.input, document.body);
+    //} 
+    //else {
       new DesktopInput(this.input);
-    }
+    //}
     this.gameControls = new GameControls(Camera, this.input);
     this.MainLoop = this.MainLoop.bind(this);
   }
