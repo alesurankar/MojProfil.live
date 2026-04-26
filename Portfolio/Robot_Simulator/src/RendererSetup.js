@@ -2,15 +2,12 @@ import * as THREE from "three";
 
 
 // Parameters
-const w = window.innerWidth;
-const h = window.innerHeight;
 const fov = 40;
-const aspect = w / h;
 const near = 2;
 const far = 2000;
 
 // Camera
-const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+const camera = new THREE.PerspectiveCamera(fov, 1, near, far)
 camera.position.set(-10, 10, 10);
 camera.lookAt(0, 0, 0);
 
@@ -20,9 +17,20 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(w, h);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+function resize() 
+{
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+
+  renderer.setSize(w, h);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+window.addEventListener("resize", resize);
+resize();
 
 export const Renderer = renderer;
 export const Camera = camera;

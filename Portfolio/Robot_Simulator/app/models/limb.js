@@ -23,14 +23,13 @@ export class Limb
 
     let currentParent = this.root;
 
-    for (let i = 0; i < structure.length; i++) 
-    {
+    for (let i = 0; i < structure.length; i++) {
       const segment = structure[i];
 
       // JOINT
       const joint = new Joint({
         parent: currentParent,
-        axis,
+        axis: segment.axis ?? axis,
         restRotation: segment.restRotation ?? new THREE.Euler(),
         minAngle: segment.min ?? -Math.PI,
         maxAngle: segment.max ?? Math.PI
@@ -56,8 +55,7 @@ export class Limb
   {
     const t = performance.now() * 0.001;
 
-    for (let i = 0; i < this.joints.length; i++) 
-    {
+    for (let i = 0; i < this.joints.length; i++) {
       const angle = fn
         ? fn(i, t)
         : 0;

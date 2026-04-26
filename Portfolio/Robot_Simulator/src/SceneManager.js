@@ -43,13 +43,15 @@ export class SceneManager
     this.UpdateCamera();
   }
 
-  Update(timeScale) 
+  Update(dt, blackboard) 
   {
-    if (this.currentScene) this.currentScene.Update(timeScale);
-
+    if (this.currentScene) {
+      this.currentScene.Update(dt, blackboard);
+    }
     const requested = this.currentScene?.requestedScene;
-    if (!requested) return;
-
+    if (!requested) {
+      return;
+    }
     this.SwitchScene(requested);
     this.currentScene.requestedScene = null;
   }

@@ -39,9 +39,17 @@ export class Robot
     // ===== LEFT ARM =====
     this.leftArm = new Limb({
       structure: [
+        // Shoulder DOF 1
+        { length: 0, axis: new THREE.Vector3(1, 0, 0) },
+
+        // Shoulder DOF 2
+        { length: 0, axis: new THREE.Vector3(0, 0, 1) },
+
+        // Shoulder DOF 3
+        { length: 0, axis: new THREE.Vector3(0, 1, 0) },
         {
           length: 3.8,
-          restRotation: new THREE.Euler(-0.3, 0, -1.2)
+          restRotation: new THREE.Euler(-0.3, 0, -1.2),
         },
         {
           length: 3.6,
@@ -59,13 +67,23 @@ export class Robot
     // ===== RIGHT ARM =====
     this.rightArm = new Limb({
       structure: [
-        {
-          length: 3.8,
-          restRotation: new THREE.Euler(-0.3, 0, 1.2)
+        // Shoulder DOF 1
+        { length: 0, 
+          restRotation: new THREE.Euler(0, 0, 0),
+          axis: new THREE.Vector3(-1, 0, 0) 
         },
+
+        // Shoulder DOF 2
+        { length: 0, 
+          restRotation: new THREE.Euler(0, 0, 1.2),
+          axis: new THREE.Vector3(0, 0, -1) 
+        },
+
+        // Shoulder DOF 3
+        { length: 3.8, axis: new THREE.Vector3(0, -1, 0) },
         {
           length: 3.6,
-          restRotation: new THREE.Euler(0.4, 0, 0.2)
+          restRotation: new THREE.Euler(0, 0, 0.2)
         },
         {
           length: 2,
@@ -87,6 +105,7 @@ export class Robot
         },
         {
           length: 4.7,
+          axis: new THREE.Vector3(1, 0, 0),
         },
         {
           length: 2,
@@ -109,6 +128,7 @@ export class Robot
         },
         {
           length: 4.7,
+          axis: new THREE.Vector3(1, 0, 0),
         },
         {
           length: 2,
@@ -122,6 +142,13 @@ export class Robot
     });
     
     this.model.position.y = 10;
+
+    this.limbs = {
+      leftLeg: this.leftLeg,
+      rightLeg: this.rightLeg,
+      leftArm: this.leftArm,
+      rightArm: this.rightArm
+    };
   }
 
   SetPosition(x, y, z)
@@ -161,7 +188,7 @@ export class Robot
     this.root.rotateZ(angle);
   }
 
-  Update(dt)
+  Update(dt, blackboard)
   {
     // // arms swing opposite
     // this.leftArm.Update(dt, (i, t) =>

@@ -4,13 +4,9 @@ import { SkyBox } from "../visuals/skyBox.js";
 
 export class BaseScene 
 {
-  // Step 10
-  constructor(scene, camera, player, skyBoxName = "skyBox") 
+  constructor(scene, skyBoxName = "skyBox") 
   {
     this.active = true;
-    this.timeFactor=1
-
-    this.SIZE_SCALE = 1;
     
     this.cameraSettings = {
       pos: { x: 0, y: 0, z: 10 },
@@ -21,16 +17,12 @@ export class BaseScene
     };
     this.scene = scene;
     this.scene.background = SkyBox.Load(skyBoxName);
-    this.camera = camera;
-    this.player = player;
     this.objects = [];
-    this.objectMap = {};
   }
 
   Init() 
   {
     if (!this.active) return;
-
     try {
       this.CreateObjects();
     }
@@ -39,11 +31,11 @@ export class BaseScene
     }
   }
 
-  Update(dt) 
+  Update(dt, blackboard) 
   {
     for (const obj of this.objects) {
       if (obj && typeof obj.Update === "function") {
-        obj.Update(dt * this.timeFactor);
+        obj.Update(dt, blackboard);
       }
     }
   }
@@ -53,16 +45,11 @@ export class BaseScene
     this.active = false;
     this.objects.forEach(obj => obj?.Dispose());
     this.objects = [];
-    if (this.sceneTriggers) {
-        this.sceneTriggers = [];
-    }
 
     // Dispose skybox
     if (this.scene?.background) {
       SkyBox.Dispose(this.scene.background);
       this.scene.background = null;
     }
-    // Clear objectMap to remove references
-    this.objectMap = {};
   }
 }

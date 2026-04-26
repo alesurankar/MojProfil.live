@@ -21,11 +21,37 @@ export class UI
         this.engine.ToggleLock();
       });
     }
-    this.AddSlider("testSlider", 1, 10, 3, (v) => {
-      console.log("slider value:", v);
+    this.AddSlider("Rotate Speed", 0, 5, 0, (v) => {
+      this.engine.blackboard.Set("locomotion.rotateSpeed", v);
     });
-    this.AddSlider("testSlider", 1, 10, 3, (v) => {
-      console.log("slider value:", v);
+    this.AddSlider("Move Speed", 0, 10, 0, (v) => {
+      this.engine.blackboard.Set("locomotion.moveSpeed", v);
+    });
+    this.AddSlider("LeftKnee", 0, 100, 0, (v) => {
+      this.engine.blackboard.Set("leftKnee.stretch", v);
+    });
+    this.AddSlider("RightKnee", 0, 100, 0, (v) => {
+      this.engine.blackboard.Set("rightKnee.stretch", v);
+    });
+    // Left Shoulder
+    this.AddSlider("Left Shoulder Pitch", 0, 100, 50, (v) => {
+      this.engine.blackboard.Set("leftShoulder.pitch", v);
+    });
+    this.AddSlider("Left Shoulder Yaw", 0, 100, 50, (v) => {
+      this.engine.blackboard.Set("leftShoulder.yaw", v);
+    });
+    this.AddSlider("Left Shoulder Roll", 0, 100, 50, (v) => {
+      this.engine.blackboard.Set("leftShoulder.roll", v);
+    });
+    // Right Shoulder
+    this.AddSlider("Right Shoulder Pitch", 0, 100, 50, (v) => {
+      this.engine.blackboard.Set("rightShoulder.pitch", v);
+    });
+    this.AddSlider("Right Shoulder Yaw", 0, 100, 50, (v) => {
+      this.engine.blackboard.Set("rightShoulder.yaw", v);
+    });
+    this.AddSlider("Right Shoulder Roll", 0, 100, 50, (v) => {
+      this.engine.blackboard.Set("rightShoulder.roll", v);
     });
   }
 

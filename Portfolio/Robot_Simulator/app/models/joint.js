@@ -34,7 +34,7 @@ export class Joint
   ApplyRotation() 
   {
     const restQuat = new THREE.Quaternion().setFromEuler(this.restRotation);
-    const worldAxis = this.axis.clone().applyQuaternion(restQuat);
+    const worldAxis = this.axis.clone();
 
     const animQuat = new THREE.Quaternion().setFromAxisAngle(
       worldAxis,

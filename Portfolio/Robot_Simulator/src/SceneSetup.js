@@ -44,7 +44,7 @@ const manager = new SceneManager(Scene, Camera);
 
 manager.LoadScene(TestScene);
 
-export function Update(timeScale) 
+export function Update(dt, blackboard) 
 {
-  manager.Update(timeScale);
+  manager.Update(dt, blackboard);
 }
