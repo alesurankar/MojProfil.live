@@ -1,4 +1,4 @@
-import { Scene, Update as SceneUpdate } from "./SceneSetup.js";
+import { GetSceneManager, Scene, Update as SceneUpdate } from "./SceneSetup.js";
 import { GameControls } from "../app/utils/gameControls.js";
 import { DesktopInput } from "../app/input/desktopInput.js";
 import { MobileInput } from "../app/input/mobileInput.js";
@@ -27,6 +27,7 @@ export class Engine
       new DesktopInput(this.input);
     //}
     this.gameControls = new GameControls(Camera, this.input);
+    this.sceneManager = GetSceneManager();
     this.MainLoop = this.MainLoop.bind(this);
   }
 
@@ -34,9 +35,8 @@ export class Engine
   {
     now /= 1000;
 
-    const frameTime = now - this.lastTime;
+    const frameTime = Math.min(now - this.lastTime, 0.1);
     this.lastTime = now;
-
     this.accumulator += frameTime;
 
     // Fixed-step updates
@@ -47,6 +47,17 @@ export class Engine
     }
     Renderer.render(Scene, Camera);
     requestAnimationFrame(this.MainLoop);
+  }
+
+  get scene() 
+  {
+    return this.sceneManager?.currentScene;
+  }
+
+  PlayMove(move, duration) 
+  {
+    console.log("PlayMove triggered", move);
+    this.scene?.animator?.Play(move, duration);
   }
 
   Start() 

@@ -3,6 +3,7 @@ import { BaseScene } from "./baseScene.js"
 import { Robot } from "../models/robot.js";
 import { Locomotion } from "../../core/locomotion.js";
 import { PoseSystem } from "../../core/poseSystem.js";
+import { Animator } from "../moves/animate.js";
 
 
 export class TestScene extends BaseScene
@@ -17,6 +18,7 @@ export class TestScene extends BaseScene
     };
     this.locomotion = null;
     this.poseSystem = null;
+    this.animator = null;
     this.robot = null;
   }
 
@@ -28,17 +30,26 @@ export class TestScene extends BaseScene
 
     this.locomotion = new Locomotion(this.robot);
     this.poseSystem = new PoseSystem(this.robot);
-    this.poseSystem.RegisterJoint("leftKnee", this.robot.leftLeg.joints[1]);
-    this.poseSystem.RegisterJoint("rightKnee", this.robot.rightLeg.joints[1]);
-    
-    // Shoulders
-    this.poseSystem.RegisterJoint("leftShoulder.pitch", this.robot.leftArm.joints[0]);
-    this.poseSystem.RegisterJoint("leftShoulder.yaw",   this.robot.leftArm.joints[1]);
-    this.poseSystem.RegisterJoint("leftShoulder.roll",  this.robot.leftArm.joints[2]);
+    this.animator = new Animator();
 
-    this.poseSystem.RegisterJoint("rightShoulder.pitch", this.robot.rightArm.joints[0]);
-    this.poseSystem.RegisterJoint("rightShoulder.yaw",   this.robot.rightArm.joints[1]);
-    this.poseSystem.RegisterJoint("rightShoulder.roll",  this.robot.rightArm.joints[2]);
+    // Legs 
+    this.poseSystem.RegisterJoint("leftKnee.stretch", this.robot.leftLeg.joints[1]);
+    this.poseSystem.RegisterJoint("rightKnee.stretch", this.robot.rightLeg.joints[1]);
+    
+    // Arms
+    this.poseSystem.RegisterJoint("leftShoulder.horizontal", this.robot.leftArm.joints[0]);
+    this.poseSystem.RegisterJoint("leftShoulder.vertical", this.robot.leftArm.joints[1]);
+    this.poseSystem.RegisterJoint("leftShoulder.roll",   this.robot.leftArm.joints[2]);
+    this.poseSystem.RegisterJoint("leftElbow.stretch",  this.robot.leftArm.joints[3]);
+    this.poseSystem.RegisterJoint("leftWrist.roll",  this.robot.leftArm.joints[4]);
+    this.poseSystem.RegisterJoint("leftWrist.stretch",  this.robot.leftArm.joints[5]);
+
+    this.poseSystem.RegisterJoint("rightShoulder.horizontal", this.robot.rightArm.joints[0]);
+    this.poseSystem.RegisterJoint("rightShoulder.vertical",   this.robot.rightArm.joints[1]);
+    this.poseSystem.RegisterJoint("rightShoulder.roll",   this.robot.rightArm.joints[2]);
+    this.poseSystem.RegisterJoint("rightElbow.stretch",  this.robot.rightArm.joints[3]);
+    this.poseSystem.RegisterJoint("rightWrist.roll",  this.robot.rightArm.joints[4]);
+    this.poseSystem.RegisterJoint("rightWrist.stretch",  this.robot.rightArm.joints[5]);
 
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(100, 100),
@@ -55,6 +66,7 @@ export class TestScene extends BaseScene
   Update(dt, blackboard) 
   {
     super.Update(dt, blackboard);
+    this.animator.Update(dt, blackboard);
     this.locomotion.Update(dt, blackboard);
     this.poseSystem.Update(dt, blackboard);
   }

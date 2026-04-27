@@ -20,7 +20,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-function resize() 
+function Resize() 
 {
   const w = window.innerWidth;
   const h = window.innerHeight;
@@ -29,8 +29,8 @@ function resize()
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
 }
-window.addEventListener("resize", resize);
-resize();
+window.addEventListener("resize", Resize);
+Resize();
 
 export const Renderer = renderer;
 export const Camera = camera;

@@ -1,19 +1,32 @@
+import { Moves } from "./app/moves/moves.js";
+
 export class UI
 {
   constructor(engine) 
   {
     this.engine = engine;
     this.root = document.createElement("div");
-    this.root.style.position = "absolute";
-    this.root.style.top = "10px";
-    this.root.style.left = "10px";
-    this.root.style.color = "white";
+    this.root.id = "ui";
     document.body.appendChild(this.root);
     this.Build();
   }
 
   Build()
   {
+    this.AddButton("Wave", () => {
+      this.engine.PlayMove(Moves.wave, 1.0);
+    });
+
+    this.AddButton("Punch", () => {
+      this.engine.PlayMove(Moves.punch, 1.0);
+    });
+
+    this.AddButton("Idle", () => {
+      this.engine.PlayMove(Moves.idle, 0.5);
+    });
+
+    
+
     const isTouch = navigator.maxTouchPoints > 0;
 
     if (!isTouch) {
@@ -21,37 +34,40 @@ export class UI
         this.engine.ToggleLock();
       });
     }
-    this.AddSlider("Rotate Speed", 0, 5, 0, (v) => {
-      this.engine.blackboard.Set("locomotion.rotateSpeed", v);
+    const locomotionControls = [
+      { label: "Rotate Speed", key: "locomotion.rotateSpeed", min: 0, max: 5, default: 0 },
+      { label: "Move Speed", key: "locomotion.moveSpeed", min: 0, max: 10, default: 0 },
+    ];
+    locomotionControls.forEach(c => {
+      this.AddSlider(c.label, c.min, c.max, c.default, v => {
+        this.engine.blackboard.Set(c.key, v);
+      });
     });
-    this.AddSlider("Move Speed", 0, 10, 0, (v) => {
-      this.engine.blackboard.Set("locomotion.moveSpeed", v);
-    });
-    this.AddSlider("LeftKnee", 0, 100, 0, (v) => {
-      this.engine.blackboard.Set("leftKnee.stretch", v);
-    });
-    this.AddSlider("RightKnee", 0, 100, 0, (v) => {
-      this.engine.blackboard.Set("rightKnee.stretch", v);
-    });
-    // Left Shoulder
-    this.AddSlider("Left Shoulder Pitch", 0, 100, 50, (v) => {
-      this.engine.blackboard.Set("leftShoulder.pitch", v);
-    });
-    this.AddSlider("Left Shoulder Yaw", 0, 100, 50, (v) => {
-      this.engine.blackboard.Set("leftShoulder.yaw", v);
-    });
-    this.AddSlider("Left Shoulder Roll", 0, 100, 50, (v) => {
-      this.engine.blackboard.Set("leftShoulder.roll", v);
-    });
-    // Right Shoulder
-    this.AddSlider("Right Shoulder Pitch", 0, 100, 50, (v) => {
-      this.engine.blackboard.Set("rightShoulder.pitch", v);
-    });
-    this.AddSlider("Right Shoulder Yaw", 0, 100, 50, (v) => {
-      this.engine.blackboard.Set("rightShoulder.yaw", v);
-    });
-    this.AddSlider("Right Shoulder Roll", 0, 100, 50, (v) => {
-      this.engine.blackboard.Set("rightShoulder.roll", v);
+
+    const poseControls  = [
+      // Legs
+      { label: "Left Knee", key: "leftKnee.stretch", min: 8, max: 50, default: 50 },
+      { label: "Right Knee", key: "rightKnee.stretch", min: 8, max: 50, default: 50 },
+
+      // Arms
+      { label: "Left Shoulder Horizontal", key: "leftShoulder.horizontal", min: 10, max: 90, default: 50 },
+      { label: "Left Shoulder Vertical", key: "leftShoulder.vertical", min: 10, max: 90, default: 50 },
+      { label: "Left Shoulder Roll", key: "leftShoulder.roll", min: 10, max: 90, default: 50 },
+      { label: "Left Elbow", key: "leftElbow.stretch", min: 50, max: 90, default: 50 },
+      { label: "Left Wrist Roll", key: "leftWrist.roll", min: 0, max: 55, default: 50 },
+      { label: "Left Wrist", key: "leftWrist.stretch", min: 35, max: 80, default: 50 },
+
+      { label: "Right Shoulder Horizontal", key: "rightShoulder.horizontal", min: 10, max: 90, default: 50 },
+      { label: "Right Shoulder Vertical", key: "rightShoulder.vertical", min: 10, max: 90, default: 50 },
+      { label: "Right Shoulder Roll", key: "rightShoulder.roll", min: 10, max: 90, default: 50 },
+      { label: "Right Elbow", key: "rightElbow.stretch", min: 50, max: 90, default: 50 },
+      { label: "Right Wrist Roll", key: "rightWrist.roll", min: 0, max: 55, default: 50 },
+      { label: "Right Wrist", key: "rightWrist.stretch", min: 35, max: 80, default: 50 },
+    ];
+    poseControls.forEach(c => {
+      this.AddSlider(c.label, c.min, c.max, c.default, v => {
+        this.engine.blackboard.Set(c.key, v);
+      });
     });
   }
 

@@ -11,27 +11,12 @@ export class Robot
     
     this.torso = new Limb({
       structure: [
-        {
-          length: 2.0,
-        },
-        {
-          length: 1.6,
-        },
-        {
-          length: 1.6,
-        },
-        {
-          length: 1.6,
-        },
-        {
-          length: 1,
-        },
-        {
-          length: 2.7,
-          thickness: 2.0,
-          color: 0xC9B904,
-          shape: "sphere"
-        }
+        { length: 2.0, width: 1.6, depth: 1.6, shape: "sphere"},
+        { length: 1.6, width: 0.8, depth: 0.8, shape: "cylinder"},
+        { length: 1.6, width: 1.2, depth: 0.8, shape: "cylinder"},
+        { length: 1.6, width: 2.4, depth: 2.4, shape: "sphere"},
+        { length: 1, width: 0.6, depth: 0.6, },
+        { length: 2.7, width: 4.0, depth: 4.0, shape: "sphere" }
       ],
       parent: this.model
     });
@@ -39,24 +24,40 @@ export class Robot
     // ===== LEFT ARM =====
     this.leftArm = new Limb({
       structure: [
-        // Shoulder DOF 1
-        { length: 0, axis: new THREE.Vector3(1, 0, 0) },
-
-        // Shoulder DOF 2
-        { length: 0, axis: new THREE.Vector3(0, 0, 1) },
-
         // Shoulder DOF 3
-        { length: 0, axis: new THREE.Vector3(0, 1, 0) },
         {
-          length: 3.8,
-          restRotation: new THREE.Euler(-0.3, 0, -1.2),
+          length: 0,
+          axis: new THREE.Vector3(1, 0, 0),
         },
         {
+          length: 0,
+          axis: new THREE.Vector3(0, 0, 1),
+        },
+        {
+          length: 3.8,
+          width: 0.6,
+          depth: 0.6,
+          shape: "cylinder",
+          axis: new THREE.Vector3(0, 1, 0),
+        },
+        // Arm DOF 1
+        {
           length: 3.6,
-          restRotation: new THREE.Euler(0.4, 0, -0.2)
+          width: 0.4,
+          depth: 0.6,
+          shape: "cylinder",
+          axis: new THREE.Vector3(1, 0, 0),
+        },
+        // Hand DOF 2
+        {
+          length: 0,
+          axis: new THREE.Vector3(0, 1, 0),
         },
         {
           length: 2,
+          width: 1.2,
+          depth: 0.4,
+          axis: new THREE.Vector3(1, 0, 0),
         }
       ],
       parent: this.torso.joints[4].pivot,
@@ -67,26 +68,39 @@ export class Robot
     // ===== RIGHT ARM =====
     this.rightArm = new Limb({
       structure: [
-        // Shoulder DOF 1
-        { length: 0, 
-          restRotation: new THREE.Euler(0, 0, 0),
-          axis: new THREE.Vector3(-1, 0, 0) 
+        {
+          length: 0,
+          axis: new THREE.Vector3(1, 0, 0),
         },
-
-        // Shoulder DOF 2
-        { length: 0, 
-          restRotation: new THREE.Euler(0, 0, 1.2),
-          axis: new THREE.Vector3(0, 0, -1) 
+        {
+          length: 0,
+          axis: new THREE.Vector3(0, 0, 1),
         },
-
-        // Shoulder DOF 3
-        { length: 3.8, axis: new THREE.Vector3(0, -1, 0) },
+        {
+          length: 3.8,
+          width: 0.6,
+          depth: 0.6,
+          shape: "cylinder",
+          axis: new THREE.Vector3(0, 1, 0),
+        },
+        // Arm DOF 1
         {
           length: 3.6,
-          restRotation: new THREE.Euler(0, 0, 0.2)
+          width: 0.4,
+          depth: 0.6,
+          shape: "cylinder",
+          axis: new THREE.Vector3(1, 0, 0),
+        },
+        // Hand DOF 2
+        {
+          length: 0,
+          axis: new THREE.Vector3(0, 1, 0),
         },
         {
           length: 2,
+          width: 1.2,
+          depth: 0.4,
+          axis: new THREE.Vector3(1, 0, 0),
         }
       ],
       parent: this.torso.joints[4].pivot,
@@ -99,16 +113,24 @@ export class Robot
       structure: [
         {
           length: 5.2,
+          width: 0.8,
+          depth: 0.9,
+          shape: "cylinder",
           restRotation: new THREE.Euler(0, 0, -3),
           min: -1,
           max: 1
         },
         {
           length: 4.7,
+          width: 0.6,
+          depth: 0.8,
+          shape: "cylinder",
           axis: new THREE.Vector3(1, 0, 0),
         },
         {
           length: 2,
+          width: 0.4,
+          depth: 0.8,
           restRotation: new THREE.Euler(0, 1, Math.PI / 2)
         }
       ],
@@ -124,14 +146,22 @@ export class Robot
       structure: [
         {
           length: 5.2,
+          width: 0.8,
+          depth: 0.9,
+          shape: "cylinder",
           restRotation: new THREE.Euler(0, 0, 3)
         },
         {
           length: 4.7,
+          width: 0.6,
+          depth: 0.8,
+          shape: "cylinder",
           axis: new THREE.Vector3(1, 0, 0),
         },
         {
           length: 2,
+          width: 0.4,
+          depth: 0.8,
           restRotation: new THREE.Euler(0, 2, Math.PI / 2)
         }
       ],
@@ -190,28 +220,6 @@ export class Robot
 
   Update(dt, blackboard)
   {
-    // // arms swing opposite
-    // this.leftArm.Update(dt, (i, t) =>
-    //   Math.sin(t * 2 + i * 0.5) * 0.6
-    // );
-
-    // this.rightArm.Update(dt, (i, t) =>
-    //   Math.sin(t * 2 + Math.PI + i * 0.5) * 0.6
-    // );
-
-    // // legs opposite to arms
-    // this.leftLeg.Update(dt, (i, t) =>
-    //   Math.sin(t * 2 + Math.PI + i * 0.6) * 0.3
-    // );
-
-    // this.rightLeg.Update(dt, (i, t) =>
-    //   Math.sin(t * 2 + i * 0.6) * 0.3
-    // );
-
-    // // torso subtle sway
-    // this.torso.Update(dt, (i, t) =>
-    //   Math.sin(t) * 0.1
-    // );
   }
 
   Dispose()

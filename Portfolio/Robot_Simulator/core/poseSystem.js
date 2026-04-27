@@ -26,56 +26,31 @@ export class PoseSystem
 
   Update(dt, blackboard) 
   {
-    // ---- KNEES ----
-    const lk = blackboard.Get("leftKnee.stretch", 0);
-    const rk = blackboard.Get("rightKnee.stretch", 0);
+    const limbs = [
+      // legs 
+      ["leftKnee.stretch", "leftKnee.stretch"],
+      ["rightKnee.stretch", "rightKnee.stretch"],
+      // Arms
+      ["leftShoulder.horizontal", "leftShoulder.horizontal"],
+      ["leftShoulder.vertical", "leftShoulder.vertical"],
+      ["leftShoulder.roll", "leftShoulder.roll"],
+      ["leftElbow.stretch", "leftElbow.stretch"],
+      ["leftWrist.roll", "leftWrist.roll"],
+      ["leftWrist.stretch", "leftWrist.stretch"],
 
-    const maxBend = Math.PI * 0.8;
+      ["rightShoulder.horizontal", "rightShoulder.horizontal"],
+      ["rightShoulder.vertical", "rightShoulder.vertical"],
+      ["rightShoulder.roll", "rightShoulder.roll"],
+      ["rightElbow.stretch", "rightElbow.stretch"],
+      ["rightWrist.roll", "rightWrist.roll"],
+      ["rightWrist.stretch", "rightWrist.stretch"],
+    ];
 
-    if (this.joints.leftKnee) {
-      const t = lk / 100;
-      this.joints.leftKnee.SetRotation(-t * maxBend);
-    }
-
-    if (this.joints.rightKnee) {
-      const t = rk / 100;
-      this.joints.rightKnee.SetRotation(-t * maxBend);
-    }
-
-    // ---- LEFT SHOULDER ----
-    const lPitch = blackboard.Get("leftShoulder.pitch", 50);
-    const lYaw   = blackboard.Get("leftShoulder.yaw", 50);
-    const lRoll  = blackboard.Get("leftShoulder.roll", 50);
-
-    if (this.joints["leftShoulder.pitch"]) {
-      const joint = this.joints["leftShoulder.pitch"];
-      joint.SetRotation(this.MapToJoint(joint, lPitch));
-    }
-    if (this.joints["leftShoulder.yaw"]) {
-      const joint = this.joints["leftShoulder.yaw"];
-      joint.SetRotation(this.MapToJoint(joint, lYaw));
-    }
-    if (this.joints["leftShoulder.roll"]) {
-      const joint = this.joints["leftShoulder.roll"];
-      joint.SetRotation(this.MapToJoint(joint, lRoll));
-    }
-
-    // ---- RIGHT SHOULDER ----
-    const rPitch = blackboard.Get("rightShoulder.pitch", 50);
-    const rYaw   = blackboard.Get("rightShoulder.yaw", 50);
-    const rRoll  = blackboard.Get("rightShoulder.roll", 50);
-
-    if (this.joints["rightShoulder.pitch"]) {
-      const joint = this.joints["rightShoulder.pitch"];
-      joint.SetRotation(this.MapToJoint(joint, rPitch));
-    }
-    if (this.joints["rightShoulder.yaw"]) {
-      const joint = this.joints["rightShoulder.yaw"];
-      joint.SetRotation(this.MapToJoint(joint, rYaw));
-    }
-    if (this.joints["rightShoulder.roll"]) {
-      const joint = this.joints["rightShoulder.roll"];
-      joint.SetRotation(this.MapToJoint(joint, rRoll));
+    for (const [key, jointName] of limbs) {
+      const value = blackboard.Get(key, 50);
+      const joint = this.joints[jointName];
+      if (!joint) continue;
+      joint.SetRotation(this.MapToJoint(joint, value));
     }
   }
 }

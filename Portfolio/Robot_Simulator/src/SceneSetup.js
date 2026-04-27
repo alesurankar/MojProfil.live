@@ -40,11 +40,15 @@ function setupShadowLight(light)
 setupShadowLight(dirLight1);
 setupShadowLight(dirLight2);
 
-const manager = new SceneManager(Scene, Camera);
-
+export const manager = new SceneManager(Scene, Camera);
 manager.LoadScene(TestScene);
 
 export function Update(dt, blackboard) 
 {
   manager.Update(dt, blackboard);
+}
+
+export function GetSceneManager() 
+{
+  return manager;
 }

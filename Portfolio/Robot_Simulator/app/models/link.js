@@ -5,23 +5,26 @@ export class Link
   constructor(
   {
     length = 5,
-    thickness = 0.5,
+    width = 0.5,
+    depth = 0.5,
     color = 0xC9B903,
     shape = null,
-    parent = null
+    parent = null,
   } = {}) 
   {
     this.length = length;
+    let radius = 0;
 
     let geom 
     if (shape === "sphere") {
-      geom = new THREE.SphereGeometry(thickness, 16, 16);
+      radius = Math.max(width, depth) * 0.5;
+      geom = new THREE.SphereGeometry(radius, 16, 16);
       const pos = geom.attributes.position;
       for (let i = 0; i < pos.count; i++) {
         let x = pos.getX(i);
         let y = pos.getY(i);
         let z = pos.getZ(i);
-
+        
         // stretch top
         if (y > 0) {
           y *= 1.2;
@@ -44,8 +47,20 @@ export class Link
       pos.needsUpdate = true;
       geom.computeVertexNormals();
     }
+    else if (shape === "cylinder") {
+
+      const radiusTop = width * 0.5;
+      const radiusBottom = depth * 0.5;
+
+      geom = new THREE.CylinderGeometry(
+        radiusTop,
+        radiusBottom,
+        length,
+        16
+      );
+    }
     else {
-      geom = new THREE.BoxGeometry(thickness, length, thickness);
+      geom = new THREE.BoxGeometry(width, length, depth);
     }
 
     const mat = new THREE.MeshStandardMaterial({ color });
@@ -56,7 +71,7 @@ export class Link
 
     // anchor at bottom of the link
     if (shape === "sphere") {
-      this.body.position.y = thickness;
+      this.body.position.y = radius;
     } 
     else {
       this.body.position.y = length / 2;

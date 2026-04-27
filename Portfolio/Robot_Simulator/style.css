@@ -14,17 +14,21 @@ html, body {
 
 #ui {
   position: fixed;
-  top: 16px;
-  left: 16px;
-  z-index: 10;
+  top: 10px;
+  left: 10px;
 
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(6px);
+  width: 200px;
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 8px;
+
   color: white;
-
-  padding: 12px;
-  border-radius: 10px;
-  font-family: system-ui, sans-serif;
+  font-family: sans-serif;
+  font-size: 12px;
 }
 
 #ui button,

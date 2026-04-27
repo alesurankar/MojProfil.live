@@ -39,7 +39,8 @@ export class Limb
       // LINK
       const link = new Link({
         length: segment.length,
-        thickness: segment.thickness ?? 0.5,
+        width: segment.width ?? 0.5,
+        depth: segment.depth ?? 0.5,
         color: segment.color ?? 0xC9B903,
         shape: segment.shape,
         parent: joint.pivot
@@ -51,24 +52,10 @@ export class Limb
     }
   }
 
-  Update(dt, fn)
-  {
-    const t = performance.now() * 0.001;
-
-    for (let i = 0; i < this.joints.length; i++) {
-      const angle = fn
-        ? fn(i, t)
-        : 0;
-
-      this.joints[i].SetRotation(angle);
-    }
-  }
-
   Dispose()
   {
     this.links.forEach(l => l?.Dispose());
     this.joints.forEach(j => j?.Dispose());
-
     this.root.removeFromParent();
   }
 }
